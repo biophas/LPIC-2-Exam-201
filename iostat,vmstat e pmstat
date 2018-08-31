@@ -1,0 +1,126 @@
+200.1 - Medir e Resolver problemas de uso de recursos - iostat, vmstat e mpstat
+
+iostat - Reports CPU, disk I/O, and NFS statistcs
+vmstat - Reports virtual memory statistics 
+mpstat - Reports processors statistics 
+
+-------------------------------------------------------------------------------
+
+IOSTAT - Reports CPU, disl I/O, and NFS statistics 
+
+Campos
+
+avg-cpu: Carga média de processamento
+
+%user: 
+
+User level
+
+%nice: 
+
+Nice priority.
+
+%system: 
+
+System level (Kernel).
+
+%iowait: 
+
+CPUs idle 
+
+%steal: Idle CPUs virtual request 
+
+
+DEVICE 
+
+tps - Transfers per second
+
+KB_read/s - Block read per second 
+
+KB_wrtn/s - Block writtten per second 
+
+KB_read - Total read per second 
+
+KB_wrtn - Total written per second 
+
+
+Show Statistics CPUs 
+
+iostat -c 
+
+Show Statistics Device 
+
+iostat -d 
+
+Show Statistics partition 
+
+iostat -p /dev/sda1 
+
+Show Version
+
+iostat -V 
+
+Show Statistics LVM 
+
+iostat -N
+
+Show Extend Statistics
+
+iostat -x 
+
+-------------------------------------------------------------------------------
+
+VMSTAT - Report Virtual memory statistics 
+
+r: Total number of processes waiting to run
+b: Total number of busy processes
+
+swapd: Used virtual memory 
+free: Free virtual memory
+buff: Memory used as buffers 
+cache: Memory used as cache
+
+si - swap in
+
+so - swap out 
+
+bi - block in
+
+bo - block out
+ 
+-------------------------------------------------------------------------------
+
+MPSTAT 
+
+Report processors related statistics 
+
+-u - Report utilization CPU
+
+
+%irq
+
+%soft
+
+%steal
+
+%guest
+
+%gnice
+
+%idle
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
