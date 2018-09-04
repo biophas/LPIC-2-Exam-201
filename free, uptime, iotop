@@ -1,0 +1,16 @@
+# UPTIME 
+
+--> Hour
+--> Status
+--> Days
+
+--> Load Avarage keep information the last minute, five minute and fifteen minute.
+
+
+
+# FREE 
+
+	free -h 
+	cat /proc/swaps
+
+# IOTOP simple top-like I/O monitor 
