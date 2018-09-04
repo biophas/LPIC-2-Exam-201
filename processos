@@ -1,0 +1,18 @@
+# PS 
+
+--> VSZ - Valores totais de memoria  de processos ativos, acumulando inclusive bibliotecas compartilhdas. 
+
+--> RSS - Total de memoria alocada pelo o processo atual.
+
+	ps -ely
+
+# PSTREE 
+
+
+--> O comando pstree não vem instalado por padrão, para utilizá-lo é necessário instalar o pacote psmisc. 
+
+
+--> Lista a ávore de processos e seus respectivos PIDs. 
+
+	pstree -p 
+
