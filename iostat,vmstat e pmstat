@@ -58,12 +58,15 @@ iostat -p /dev/sda1 (Display Statistics block partitions sda1)
 iostat -V (Print version number)
 iostat -N (Display the registered device mapper names, LVM Statistics  
 iostat -x (Display extended statistics) 
+iostat -c 2 (Atuliza as informações a cada 2s)
+iostat -d 2 5 (Atuliza as informações a cada 2s por cinco vezes)
+
 -------------------------------------------------------------------------------
 
 VMSTAT - Report Virtual memory statistics 
 
-r: Total number of processes waiting to run
-b: Total number of busy processes
+r: The number of runnable processes (running or waiting for run time)
+b: The number of processes in uninterruptable sleep (Dorment)
 
 swapd: Used virtual memory 
 free: Free virtual memory
@@ -77,10 +80,18 @@ so - swap out
 bi - block in
 
 bo - block out
- 
+
+in - The number of interrupts per second, incluing the clock
+
+cs - The number of context switches per second (O número de opções de contexto por segundo)
+
+vmstat -d
+vmstat -p (Só retorna informações se for mencionado a partição, caso contrário retorna erro)
+
+
 -------------------------------------------------------------------------------
 
-MPSTAT 
+MPSTAT (Estatísticas dos Multiprocessadores) 
 
 Report processors related statistics 
 
