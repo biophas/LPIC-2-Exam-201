@@ -1,0 +1,31 @@
+200.1 – Medir e Resolver Problemas de Uso de Recursos - top, htop e iotop
+
+# TOP (Display Linux processes)
+ 
+Load avarage: Over the last 1, 5 and 15 munutes 
+ 
+--> Personal command top 
+
+shift + f 
+ 
+--> Enter or left commits, d or space toggles display
+--> s  sets sort
+--> q or esc to end!
+
+# HTOP 
+
+l list files of processes 
+
+htop -p PID + l Show files of processes 
+ 
+--> 100 igual a 10 segundos no htop 
+
+--> htop -d 100 (Atualiza a cada 10s)
+
+# iotop (Simple top-like I/O monitor)
+
+
+
+
+ 
+ 
