@@ -42,6 +42,10 @@
 
 # FLAGS 
 
+--> Command default 
+
+	sar our sar -u
+
 --> Report Memory Utilization Statistic
 
 	sar -r 
@@ -62,10 +66,14 @@
 --> Extract records from filename 
 
 	sar -r -f sa02 
+	
+	-r Statistics of Memory
+	-f filname
 
 --> This reports I/O statistics 
 
 	sar -b 
+
 
 
 
