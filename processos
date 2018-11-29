@@ -1,8 +1,15 @@
 # PS 
 
---> VSZ - Valores totais de memoria  de processos ativos, acumulando inclusive bibliotecas compartilhdas. 
+--> VSZ - Virtual Memory Size  (Valores totais de memoria  de processos ativos, acumulando inclusive bibliotecas compartilhadas) 
 
---> RSS - Total de memoria alocada pelo o processo atual.
+O tamanho de memória ocupada pelas bibliotecas são mostradas na coluna VSZ, mesmo que sejam compartilhadas. 
+
+--> RSS -  
+(Total de memoria alocada pelo o processo atual)
+
+Tamanho alocado para o processo específico
+
+--> Mostra no formato mostra a coluna para identificar processos em estão b (The number of processes in uninterruptible sleep).
 
 	ps -ely
 
@@ -15,4 +22,19 @@
 --> Lista a ávore de processos e seus respectivos PIDs. 
 
 	pstree -p 
+	
+	
+	
+# w 
+
+--> Show who is logged on and what they are doing 
+
+--> Desconectar um usuário 
+
+fuser -k /dev/pts/0 
+
+
+
+
+
 
