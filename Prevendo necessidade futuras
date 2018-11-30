@@ -1,0 +1,7 @@
+# Prevendo necessidade futuras 
+
+
+
+/etc/collectd/collectd.conf
+/var/lib/collectd/rrd/
+
