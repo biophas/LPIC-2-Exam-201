@@ -45,6 +45,41 @@ sendo utilizado atualmente.
   /usr/src/linux/Documentation 
 
 
+--> A imagem do Kernel fica em /boot/vmlinuz-V-R-P-dis é a versão atual do kernel 
+
+-->  As imagens podem ser zImage ou bZimage 
+
+--> A zImage era carregada na low memory (Memória baixa) Limite de tamanho de 512K 
+
+--> bZimage quer dizer Big zImage High Memory (Memória Alta) Limite de tamanho de 512K 
+
+--> Ambos são compactados com o compactador gzip
+
+# MÓDULOS 
+
+--> Os módulos são localizados em /lib/modules/version-kernel/
+
+--> Os demais arquivos estão dentro do /lib/modules/version-kernel/kernel
+
+--> A extensão .ko significa que é um módulo 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
