@@ -1,0 +1,10 @@
+201.2 - Compilando o Kernel - Configuração
+
+--> Pacotes utilizados para compilcar o kernel 
+
+build-essentials 
+
+--> make config 
+
+
+
