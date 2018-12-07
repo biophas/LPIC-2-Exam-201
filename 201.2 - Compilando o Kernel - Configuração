@@ -2,9 +2,76 @@
 
 --> Pacotes utilizados para compilcar o kernel 
 
-build-essentials 
+build-essential 
+bison
+flex
+libncurses-dev
 
---> make config 
+--> make config (Baseado em perguntas)
+--> make menucofig (Baseado em Menus)
+--> 
+
+
+# menuconfig 
+
+Enter = Seleciona 
+---> = Submenus 
+---  = Vazio
+Y  = Inclui
+N  = Excluí 
+<M> = Módulares features 
+Esc Esc = Volta
+? = Help 
+</> Search 
+[*] Built-in (Integrado ao kernel)
+[ ] Excluído
+< > Module capable 
+
+--> Ao termnar a configuração e dado esc para sair, é salvo um arquivo .config em 
+
+-->  make oldconfig (Usado para restaurar uma configuração anterior)
+
+--> Ele busca o arquivo .config exitente dentro de /usr/src/linux/.config e fazer as perguntas das
+configurações que ainda não forma respondidas. 
+
+--> O make menuconfig pode carrgar o arquivo através da opção load do menu 
+
+--> make xconfig (É necessário um servidor X)
+
+  pkg-config 
+  g++
+  libqt4-dev 
+  
+ --> make gconfig
+ 
+ gtk+-2.0 
+ gmodule-2.0 
+ libglade2-dev 
+ glib-2.0 
+ 
+ 
+ # Makefile 
+ 
+ --> Pode ser editado o campo da EXTRAVERSION = -111
+ 
+ 
+ # LOCALVERSION fica no .config no campo GENERAL SETUP 
+ 
+ # COMPILAR E GERAR A IMAGEM 
+ 
+ --> É recomendado ajustar a quantidade de processadores, questão de espaço em disco também deve ser revista
+ make bzImage 
+ 
+ --> A uitlização da flag -j2 permite a utilização de dois processos em paralelo 
+ 
+ Package: libelf-dev, bc, *elfutils-libelf-dev, libesl-dev, libssl-dev 
+ 
+ 
+ 
+ 
+
+
+
 
 
 
