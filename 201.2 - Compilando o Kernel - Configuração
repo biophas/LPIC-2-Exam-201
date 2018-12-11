@@ -1,15 +1,14 @@
 201.2 - Compilando o Kernel - Configuração
 
---> Pacotes utilizados para compilcar o kernel 
+--> Pacotes utilizados para compilar o kernel 
 
-build-essential 
-bison
-flex
-libncurses-dev
+Package: build-essential, bison, flex, libncurses-dev
 
 --> make config (Baseado em perguntas)
 --> make menucofig (Baseado em Menus)
---> 
+--> make xconfig (Utiliza o servidor X instalando os pacotes pkg-config, g++, libqt4-dev)
+--> make gconfig (Utiliza o servidor X instalando os pacotes gtk+-2.0, gmodule-2.0, libglade2-dev, glib-2.0)
+
 
 
 # menuconfig 
@@ -27,7 +26,7 @@ Esc Esc = Volta
 [ ] Excluído
 < > Module capable 
 
---> Ao termnar a configuração e dado esc para sair, é salvo um arquivo .config em 
+--> Ao termnar a configuração e dado esc para sair, é salvo um arquivo .config do diretório do código fonte  
 
 -->  make oldconfig (Usado para restaurar uma configuração anterior)
 
