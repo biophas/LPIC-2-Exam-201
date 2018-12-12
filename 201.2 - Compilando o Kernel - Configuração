@@ -67,7 +67,27 @@ configurações que ainda não forma respondidas.
  
  
  
+ --> Após o término da compilação é informado onde é salvo o arquivo
  
+ arch/x86/boot/bzImage
+ 
+ 
+
+# COMPILANDO OS MÓDULOS 
+
+make -j2 modules 
+
+# Comandos para limpar a compilação do kernel 
+
+
+--> make clean (Limpa tudo que foi compilado, tanto kernel como os módulos)
+--> make mrproper (Faz tudo que o clean e além disso limpa o arquivo .config)
+
+
+
+
+
+
 
 
 
