@@ -1,0 +1,14 @@
+201.2 - Compilando o Kernel - Pacotes, Limpeza, DMKS e Dracut
+
+
+
+--> make deb-pkg (Gera diversos pacotes nas distribuições debian)
+--> make rpm-pkg (Gera diversos pacotes nas distribuições red hat)
+--> make binrpm-pkg (Gera somente a imagem compilada) 
+
+
+--> DKMS (Criados pela DELL) 
+
+
+
+
