@@ -1,0 +1,32 @@
+# Compilando o Kernel - Instalação
+
+--> É pegar os arquivos compilados e colocar no diretório correto, /lib/modules 
+
+  make install modules 
+
+--> Após a instalação são gerados os seguintes arquivos em /boot 
+
+vmlinuz-4.19.6-bphs 
+System.map-4.19.6-bphs
+config-4.19.6-bphs
+initrd.img-4.19.6-bphs 
+
+--> O comando update-grub atualiza o arquivo /boot/grub/grub.cfg 
+
+less /boot/grub/grub.cfg 
+
+--> Os arquivos System.map, config e initrd.img pode ser criados manualmente 
+
+--> Debian
+
+makinitramfs -o /boot/initrd.img-4.19.6-bphs 4.19.6-bphs
+
+--> No red hat 
+
+mkinitrd -k 4.19.6-bphs /boot initrd 
+
+--> 
+
+
+
+ 
