@@ -7,7 +7,36 @@
 --> make binrpm-pkg (Gera somente a imagem compilada) 
 
 
---> DKMS (Criados pela DELL) 
+--> DKMS (Framework criado pela DELL, o mesmo não vem por padrão)
+
+  apt-get install dkms 
+
+--> zfs-dkms é um sistema de arquivos 
+
+--> É instalado dois pacotes: 
+
+spl-version > dksm.conf (Configuração do módulo que será incorporado ao DKMS)
+zfs-version 
+
+--> Após a instalação pode ser checado com o comando: 
+
+
+dkms status 
+
+--> Padrão Debian 
+
+update-initramfs -u 
+mkinitramfs 
+
+--> Padrão Red hat 
+
+--> DRACUT é substituto do mkinitrd nas distribuições red hat (Ferrament de baixo nível para a geração de uma imagem initramfs)
+
+make clean vai limpar os arquivos compilados 
+mrproper vai limpar além dos arquivos compilados será limpo o  arquivo .config 
+
+
+
 
 
 
