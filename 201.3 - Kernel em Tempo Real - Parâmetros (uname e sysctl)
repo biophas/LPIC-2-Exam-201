@@ -1,0 +1,30 @@
+# 201.3 - Kernel em Tempo Real - Parâmetros (uname e sysctl)
+
+
+uname -a ou --all Imprime todas as informações, na ordem a seguir: 
+
+-s ou --kernel-name Imprime o nome do kernel do sistema operacional 
+-n --nodename Imprime o nome do nó da máquina de rede
+-r --kernel-release Imprime a versão de liberação do kernel 
+-v --kernel-version Imprime a data em que o kernel foi crido 
+-m --machine Imprime o nome do hardware da máquina (arquitetura)
+-p --processor Imprime o tipo de processaodr 
+-i --hardware-platform Imprime a plataforma de hardware
+-o --operiting-system Imprime o sistema operacional 
+
+
+# SYSCTL (Configura os parametros do kernel em tempo real)
+
+
+--> Existem duas formas de alterar o parâmetro de um kernel
+
+echo 10000 > /proc/sys/fs/file-max
+
+Ou 
+
+sysctl -w /proc/sys/fs/file-max=10000 
+
+--> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc 
+
+
+
