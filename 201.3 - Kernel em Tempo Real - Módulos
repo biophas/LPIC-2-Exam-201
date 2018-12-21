@@ -1,0 +1,36 @@
+# 201.3 - Kernel em Tempo Real - Módulos 
+
+-- > O diretório padrão dos módulos do kernel é /lib/modules/`uname -r`
+
+--> Esses módulos funcionam como base para o funcionamento do comando modprobe
+
+--> O comando depmode gera os arquivos dos módulos 
+
+-- > depmod (Generate modules.dep and map files) 
+
+--> Show the status of modules in the Linux
+
+lsmod 
+
+--> modinfo (Show information about a Linux Kernel module)
+
+--> inmos (Simple program to insert a module into th)
+
+--> modprobe (Add and remove modules from the Linux Kernel)
+
+--> Os arquivos de configurações dos modulos ficam em /etc/modules-load.d ou no arquivo /etc/modules
+
+-rw-r--r-- 1 root root  195 dez 20 22:52 modules
+
+modules-load.d:
+total 4
+
+
+O diretório /etc/modprobe.d/ existe um arquivo de blacklist onde pode ser colocado o nome do módulo
+que não deve ser crregado.
+
+
+--> É importante a utilização da opção abaixo: 
+
+option module-named index=2 
+
