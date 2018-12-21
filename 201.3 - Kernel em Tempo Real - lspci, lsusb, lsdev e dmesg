@@ -1,0 +1,14 @@
+# 201.3 - Kernel em Tempo Real - lspci, lsusb, lsdev e dmesg
+--> lspci (List all PCI devices)
+
+--> lsusb (List USB devices)
+
+--> lsdev (Display information about installed hardware)
+
+-- > dmesg (Print or control the kernel ring buffer) É used to examine or control the kernel ring buffer 
+
+
+
+
+
+
