@@ -54,7 +54,7 @@ configurações que ainda não forma respondidas.
  --> Pode ser editado o campo da EXTRAVERSION = -111
  
  
- # LOCALVERSION fica no .config no campo GENERAL SETUP 
+ # LOCALVERSION fica no .config no campo CONFIG_LOCALVERSION="-BPHS"
  
  # COMPILAR E GERAR A IMAGEM 
  
