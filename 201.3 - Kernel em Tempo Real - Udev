@@ -6,9 +6,9 @@
 
 --> Arquivo de configuração do udev fica no /etc/udev/udev.conf 
 
---> Arquivos de regras do udev fica /etc/udev/udev.d 
+--> Arquivos de regras do udev fica /etc/udev/rules.d 
 
 --> Porém por padrão as regras vem no diretório /lib/udev/rules.d/ 
 
-Obs. Ao criar uma regar em /etc/udev/rules.d/ irá sobrescrever a regra igual no /lib/udev/rules.d/ 
+Obs. Ao criar uma regra em /etc/udev/rules.d/ irá sobrescrever a regra igual no /lib/udev/rules.d/ 
 
