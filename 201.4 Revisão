@@ -1,0 +1,11 @@
+# Componentes do kernel 
+
+Tipos de kernel
+
+Monolítico: É um processo único de imagem única 
+Microkernel: É um controlador central que delega funções 
+
+O linux utiliza o kernel monolítico, porém de forma módular.
+
+
+
