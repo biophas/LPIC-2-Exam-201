@@ -22,7 +22,7 @@ echo 10000 > /proc/sys/fs/file-max
 
 Ou 
 
-sysctl -w /proc/sys/fs/file-max=10000 
+sysctl -w file-max=10000 (Passa o parâmentro direto sem o path) 
 
 --> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc 
 
