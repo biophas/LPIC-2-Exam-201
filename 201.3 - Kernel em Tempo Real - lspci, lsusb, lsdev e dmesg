@@ -6,7 +6,6 @@
 --> lsdev (Display information about installed hardware) para a utilização do udev é necessário a instalação do pacote procinfo.
 
   apt-get install procinfo 
-  
 
 -- > dmesg (Print or control the kernel ring buffer) É used to examine or control the kernel ring buffer 
 
