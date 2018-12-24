@@ -27,4 +27,22 @@ sysctl -w file-max=10000 (Passa o parâmentro direto sem o path)
 --> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc 
 
 
+# Material complementar 
+
+
+--> Para listar os atuais parâmetros de seu kernel digite:
+
+systecl -a 
+
+--> Para alterar temporariamente um parâmetro, utilize o parâmetro -w do sysctl, 
+indicando a variável que deseja alterar e o novo valor que será utilizado para a mesma.
+
+systecl -w {nome-variável=valor}
+
+--> Caso deseje realizar alterações permanentes, edite o arquivo /etc/sysctl.conf e em seguida aplique suas modificações
+com o parâmetro -p do sysctl.
+
+systctl -p 
+
+
 
