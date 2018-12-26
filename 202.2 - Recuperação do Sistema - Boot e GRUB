@@ -1,6 +1,21 @@
 # 202.2 - Recuperação do Sistema - Boot e GRUB
 
-BIOS(Power On Self Test) > MBR (Mater boot recorder) > BOOT Loader (Grub) > Kernel > Init 
+# Master boot Record
+
+--> Localizado nos primeiros 512 bytes do disco bootável 
+--> Contém informações sobre o grub
+--> A MBR armazena o grub 
+
+/dev/hda ou /dev/sda
+
+# BIOS(Power On Self Test) > MBR (Mater boot recorder) > BOOT Loader (Grub) > Kernel > Init 
+
+BIOS: Executa o Post On Self Test e locaiza e executa o que está na mbr 
+MBR: Master Boot Record e contém o bootloader 
+BOOT Loader(grub): Seleciona e executa o kernel e o initrd 
+Kernel: Executa o /sbin/init 
+Init: Inicia os programas do runlevel/target definido
+
 
 # GRUB 2 características 
 
@@ -17,16 +32,67 @@ vim /etc/default/grub
 # Diretório pardão do arquivo grub.cfg
 /boot/grub/grub.cfg 
 
+# O gpt5 não tem a limitação de 4 partições primarias e suporta partições de mais de 2TBs.
+
 # Diretório que possui arquivos de configurações, detalhes do sistema
 /etc/grub.d/
+
+# Quando é mostrado uma partição com msdos1 significa que a partição utiliza mbr. 
+
+hd0,msdos1
 
 # Comando update-grub, atualiza /etc/defaults/grub/grub.cfg 
 update-grub
 
-# Comando gru-mkconfig também atualiza o arquivo grub.cfg passando o caminho completo do arquivo ele ler os arquivos
+# Comando grub-mkconfig também atualiza o arquivo grub.cfg passando o caminho completo do arquivo ele ler os arquivos
 no /boot/ para compor o arquivo grub.cfg.
 
 grub-mkconfig -o /boot/grub/grub.cfg 
+
+# O comando grup-install instala o grub para um dispositivo 
+
+grup-install <device>
+
+# Principais parâmetros do grub 
+
+--> menuentry 
+--> set root 
+--> linux 
+
+# Arquivo grub.cfg 
+
+--> set root='hd0,msdos1' parametro que mostra onde o /boot é montado. 
+
+# Modo de recuperação 
+
+Editar a linha /vmlinuz-a-b-c root=UUID0000000000 ro quiet e colocar no final o runlevel que deseja iniciar. 
+
+# No modo single o kernel chama o kernel chama o init e o init chama o mod single. 
+
+/vmlinuz-a-b-c root=UUID0000000000 ro quiet 1 
+
+No modo single, você pode desmontar as partições e realizar o fsck, ao tentar desmontar a partição /var tive problemas
+na hora de realizar o fsck com o erro e2fsck cannot continue aborting, consegui corrigir rodando o comanado: 
+
+fsck -nf /var 
+
+Posso utilizar o comando dmesg 
+
+# Outra forma de recuperação é utilizando o init=/bin/bash o kernel chama o bash ao invés do modo single. 
+
+--> O mesmo já abre o terminal direto, ao consultar quem é o pai de todos os processos é verificado que o init 1 é o /bin/bash 
+
+--> Não é montado as partições, somente a partição do / é montada com o status de read only 
+--> Desta forma é possível realizar um fsck no / 
+--> O arquivo fstab fica com read only 
+--> Porém é possível realizar o procedimento abaixo para a partição / volte a ficar read/write
+
+mount -o remount/rw /
+
+--> Desta forma consigo editar o arquivo fstab novamente. 
+
+
+
 
 
 
