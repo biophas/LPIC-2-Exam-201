@@ -1,0 +1,49 @@
+# 202.1 - Customizando o Sistema de Inicialização SysV-init - init
+
+SysV-init - init 
+
+Seu arquivo principal é o /etc/inittab 
+
+Existem o total de 7 níveis de runlevel 
+
+rc0.d -> Halt 
+rc1.d -> Single User
+rc2.d -> Multiuser, without NFS (The same as 3, if you do not have networking)
+rc3.d -> Multiuser Full mode
+rc4.d -> Unused 
+rc5.d -> X11 
+rc6.d -> reboot (Do NOT set initdefault to this)
+
+No Debian utiliza-se o comando update-rc.d para gerenciar as configurações de scripts nos boot do sistema 
+
+Ex. update-rc.d collectd disable 5 (runlevel)
+update-rc.d collect enable 5 (Habilita o script no runlevel 5)
+update-rc.d collect remove (Remove o script da inicilização do sistema, ou seja de todos os runlevels)
+update-rc.d collect defaults (Configura o scripts nos runlevels no qual está configurado como padrão)
+
+No Red hat utiliza-se o comando chkconfig 
+
+Utilizando apenas chkconfig lista todos os processo e configurações dos seus respectivos runvels
+
+# Lista todos os processos
+chkconfig --list 
+
+# Alterando as configurações no runlevel
+chkconfig --level 45 network off 
+chkconfig --add 4 network 
+chkconfig --del 5 network 
+
+# Comando telinit e init, tem como principal função alterar o nível de execução do sistema 
+
+telinit 5 
+ou 
+init 5 
+
+# O comando runlevel exibe o número utilizado atualmente 
+
+runlevel 
+
+
+
+
+
