@@ -1,0 +1,39 @@
+# 202.2 - Recuperação do Sistema - Boot e GRUB
+
+BIOS(Power On Self Test) > MBR (Mater boot recorder) > BOOT Loader (Grub) > Kernel > Init 
+
+# GRUB 2 características 
+
+- Bootloader modular 
+- Suporte bios e UEFI
+- Suporte a scripts 
+- Suporte a multiplas plataformas incluíndoa x86 
+- Suporte UUIDs 
+
+# Diretório pardão do grub  
+
+vim /etc/default/grub 
+
+# Diretório pardão do arquivo grub.cfg
+/boot/grub/grub.cfg 
+
+# Diretório que possui arquivos de configurações, detalhes do sistema
+/etc/grub.d/
+
+# Comando update-grub, atualiza /etc/defaults/grub/grub.cfg 
+update-grub
+
+# Comando gru-mkconfig também atualiza o arquivo grub.cfg passando o caminho completo do arquivo ele ler os arquivos
+no /boot/ para compor o arquivo grub.cfg.
+
+grub-mkconfig -o /boot/grub/grub.cfg 
+
+
+
+
+
+
+
+
+
+
