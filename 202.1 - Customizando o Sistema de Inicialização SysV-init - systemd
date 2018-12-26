@@ -1,0 +1,50 @@
+# 202.1 - Customizando o Sistema de Inicialização SysV-init - systemd
+
+O systemd pode ser da seguinte forma: 
+
+.service
+.socket
+.target 
+.patch 
+
+# O diretório principal do systemd 
+
+/lib/systemd/system (Terciário)
+/etc/systemd/system (Preferencial) 
+/run/systemd/system (Secundário)
+
+# Comando systemd-delta é [Find overridden configuration files]
+
+systemd-delta
+
+# Comando systemctl [Control the systemd system and service manager] 
+
+systemctl 
+
+# Listando todas as units com o systemd 
+
+systemctl list-units 
+
+# Alterando o target 
+
+systemctl isolate multi-user-target 
+
+# Configurando novamente o target 
+
+systemctl default 
+
+# Verificando o status do serviço também pode ser verificado se o script está sendo inicializado no boot da máquina
+verificando o status enable ou disable.  
+
+systemctl status sshd.service 
+
+# Iniciar, restart e stop 
+
+systemd start, restart, stop sshd.service 
+
+
+
+
+
+
+
