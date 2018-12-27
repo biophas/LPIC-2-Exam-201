@@ -87,7 +87,7 @@ Posso utilizar o comando dmesg
 --> O arquivo fstab fica com read only 
 --> Porém é possível realizar o procedimento abaixo para a partição / volte a ficar read/write
 
-mount -o remount/rw /
+mount -o remount,rw /
 
 --> Desta forma consigo editar o arquivo fstab novamente. 
 
