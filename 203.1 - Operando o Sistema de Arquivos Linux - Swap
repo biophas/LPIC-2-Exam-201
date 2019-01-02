@@ -1,0 +1,53 @@
+# 203.1 - Operando o Sistema de Arquivos Linux - Swap
+
+--> Commands 
+
+# Listando as partições 
+
+fdisk -l
+
+# Formtando partição swap 
+
+mkswap /dev/sdb1 
+
+# Habilitando swap 
+
+swapon /dev/sdb1 
+
+# Desabilitando swap 
+
+swapoff /dev/sdb1 
+
+# Verificando memória swap 
+
+free -h 
+
+# Verificando origem da memória swap 
+
+cat /proc/swaps 
+
+# Input swap no arquivo /etc/fstab 
+
+/dev/sdb1 swap swap defaults 0 0 
+/dev/sdb1 none swap sw 0 0 
+
+# Configurando arquivo para utilizar com swap 
+
+dd if=/dev/zero of =/arquivoswap bs=1024k count=1000
+
+mkswap /arquivoswap 
+
+swapon /arquivoswap 
+
+# Editando um arquivo swap no fstab 
+
+/arquivoswap swap swap defaults 0 0 
+/arquivoswap none swap sw 0 0 
+
+
+
+
+
+
+
+
