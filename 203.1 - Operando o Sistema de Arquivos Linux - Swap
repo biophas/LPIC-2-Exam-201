@@ -6,7 +6,7 @@
 
 fdisk -l
 
-# Formtando partição swap 
+# Formatando partição swap 
 
 mkswap /dev/sdb1 
 
@@ -33,7 +33,7 @@ cat /proc/swaps
 
 # Configurando arquivo para utilizar com swap 
 
-dd if=/dev/zero of =/arquivoswap bs=1024k count=1000
+dd if=/dev/zero of=/arquivoswap bs=1024k count=1000
 
 mkswap /arquivoswap 
 
