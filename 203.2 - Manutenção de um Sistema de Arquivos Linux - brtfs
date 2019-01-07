@@ -1,0 +1,33 @@
+# 203.2 - Manutenção de um Sistema de Arquivos Linux - brtfs
+
+Btrfs - Btreefs 
+
+Filesystem moderno
+Foco em tolerância a falhas e facilidade de administração e reparo
+
+Recursos 
+
+Raid 0,1 e 10 
+Subvolumes 
+Snapshots 
+Compressão direto no FS (zlib e LZO)
+Conversão ext3/4 para btrfs 
+
+# Verificando se o sistema suporte o filesystem como por exeplo btrfs 
+
+cat /proc/filesystems 
+
+# Para carregar o módulo 
+
+modprobe brtfs 
+
+# Instalando a ferramenta 
+apt-get install btrfs-tools 
+
+# Criando uma partição btrfs 
+
+mkfs.btrfs /dev/sdb1 
+
+# Parei o vídeo com 8 minutos
+
+
