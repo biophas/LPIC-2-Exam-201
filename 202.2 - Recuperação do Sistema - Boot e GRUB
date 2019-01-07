@@ -86,6 +86,7 @@ Posso utilizar o comando dmesg
 --> Desta forma é possível realizar um fsck no / 
 --> O arquivo fstab fica com read only 
 --> Porém é possível realizar o procedimento abaixo para a partição / volte a ficar read/write
+--> Para alterar a senha de root a partição / tem que está como read write 
 
 mount -o remount,rw /
 
