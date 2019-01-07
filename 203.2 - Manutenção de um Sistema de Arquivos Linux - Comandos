@@ -1,0 +1,46 @@
+# 203.2 - Manutenção de um Sistema de Arquivos Linux - Comandos
+
+
+dump2fs - dump ext2/ext3/ext4 filesystem informatiom (Information)
+
+Flags 
+
+-h Human
+-b Traz informação de Bad block
+-f Informação dos grupos de blocos 
+ 
+
+Campos 
+
+reserved block count: 65555 (5%) essa porcetagem fica disponível para o root e não poderá ser usado para outras finalidades. 
+Max Mount Count: É quantidade de montagem precisa ser feito antes de um checagem de disco
+Check Interval: Pode ser configurado um intervalo de checagem do disco
+
+
+tune2fs - adjust tunable filesystem parameters on ext2/ext3/ext4 filesystems (Sintonizável)
+
+-l Lista as propriedades (Mesma informação do dumpe2fs)
+-i Interval
+-m reserved_blocks_percent 
+-r reserved_blocks_count 
+-M last_mounted_dir
+-L Define o label
+-c Maximum mount count 
+-j Adiciona o recursos de journaling em um dispositivo ext2 transformando em um ext3  
+
+Tips 
+
+A diferença entre o ext2 ext3 é a opção has_journaling 
+
+debugfs:  filesystem debugger Realiza manutenção em baixo nível, server para recuperação de arquivos 
+badblocks: Search a device for bad blocks
+
+
+
+
+
+
+
+
+
+
