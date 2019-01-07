@@ -1,0 +1,15 @@
+# 203.2 - Manutenção de um Sistema de Arquivos Linux - fsck
+
+
+fsck: Checa e repara filesystem no Linux 
+
+-f force 
+-n Não corrigi 
+-y anda -p Corrigi todos os passos sem realizar perguntas
+-c Por badblocks
+Clean: Quando a partição já foi checada
+
+Obs. A partição só pode ser checada após ser desmontada 
+
+e2fsck: 
+
