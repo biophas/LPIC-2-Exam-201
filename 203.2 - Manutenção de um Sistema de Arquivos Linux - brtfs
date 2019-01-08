@@ -62,7 +62,17 @@ mount -o subvol=Sub1 /dev/sdb5 /mnt/SubVolume1/
 
 btrfs subvolume snapshot /mnt/SubVolume1/SubVol1 /mnt/SubVolume1/Snap1 
 
-Parei com 15 minutos 
+# Formantando discos btrfs em raid1 
+
+mkfs.btrfs -d /dev/sdc1 /dev/sdc2 (utilizar o -f para forçar) 
+
+Obs. Mesmo montando o disco 2 do raid ele sempre mostrará o primeiro disco ao digiar o comando df -Th
+
+# Conversão de filesystem 
+
+btrfs-convert /dev/sdc3 (O disco tem que está em ext3 ou ext4)
+
+Após a conersão são mantidos os mesmos arquivos e é criado o diretório ext2_saved dentro um arquivo chamado iamge
 
 
 
