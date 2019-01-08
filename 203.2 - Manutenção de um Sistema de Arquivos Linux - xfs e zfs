@@ -1,0 +1,63 @@
+# 203.2 - Manutenção de um Sistema de Arquivos Linux - xfs e zfs
+
+ZFS - Criado pela SUN para o Solares, hoje é mantido pela Oracle, tem a mesma ideia de LVM. 
+
+Openzfs - É uma alternativa de código aberto do ZFS
+
+- Foco na integridade dos dados 
+
+- Facilidade no gerenciamento 
+
+- Sistemas de arquivos em Pools / escabilidade
+
+- RAID 
+
+-------------------------------------------------------
+
+XFS 
+
+- Desenvolvido pela Silocon Graphics para IRX 
+
+- Robusto Escalável 
+
+- Trabalha com arquivos grandes 
+
+- Redimensionamento/Desfragmentaçao Online 
+
+- Tamanho de Blocos Variávies
+
+# Por padrão não vem instalados os arquivos xfsprogs e xfsdump 
+
+
+# Comandos 
+
+mkfs.xfs /dev/sdb6 
+
+# expand an XFS filesystem 
+
+xfs_info /mnt/xfs 
+
+# O xfs_repair repair an XFS filesystem
+
+xfs_repair /dev/sdb6 
+
+Obs: O comando xfs_check caiu em desuso quando o xfs_repair assumiu a sua função
+
+# XFS filesystem incremental dump utility
+
+xfsdump 
+
+# XFS filesystem incremental restore utility
+
+xfsrestore 
+
+
+
+
+
+
+
+
+
+
+
