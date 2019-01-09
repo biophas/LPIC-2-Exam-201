@@ -1,0 +1,39 @@
+# 203.2 - Manutenção de um Sistema de Arquivos Linux - smart
+
+# O smart monitora apenas o disco 
+
+# Smart Disk Monitoring Daemon 
+
+smartd 
+
+# Control and Monitor utility for SMART Disks 
+
+smartctl 
+
+Obs. O disco tem que suportar o serviço de smart 
+
+# Pacote smartmontools instala o smartd e o smartcl
+
+# Consutlar se o disco suporta o smart 
+
+smartd -i /dev/sdb5 
+
+# Consultar a saúde de um disco, após consulta retorna o status de passed 
+
+smartcl -H /dev/sda (Health) 
+
+# Traz informação detalhada sobre o disco 
+
+smartctl -a /dev/sdb
+
+
+
+
+
+
+
+ 
+
+
+
+
