@@ -5,3 +5,68 @@
 cdrecorder > wodim: Write data to optical media 
 mkisofs > genisoimage: Create ISO9660/Joliet/HFS filesystem with optional Rock Ridge attributes 
 udftools >: 
+
+
+# Criando uma imagem do drive de cd/dvd físico 
+
+dd if=/dev/sr0 of=image.iso 
+
+# Criando um disco de uma imagem ISO 
+
+wodim dev=/dev/sr0 imagem.iso 
+
+# Criando imagem de um diretório 
+
+genisoimage -o imagem.iso /home/biophas 
+
+# Criando imagem de dois diretórios 
+
+genisoimage -o imagem2.iso /home/biophas /etc/apt/ 
+
+# Criando imagem de dois dirtórios separados 
+
+genisoimage -o imagem3.iso -grafit-points dir1=/home/biophas/ dir2=/etc/apt
+
+
+# Criando um diretório corrigindo os nomes dos arquivos 
+
+genisoimage -J -o  imagem-joliet.iso /home/biophas 
+
+--> Usando o comando genisoimge por padrão ele utiliza o tipo de arquivo iso9660, o mesmo tem limitações de condificação
+e limitações de tamanhos de arquivos. 
+
+--> O Joliet habilita os nomes longos, é para cd que serão utilizados no Windows, além de habilitar a condificação unicode 
+
+# Montando com um diretório utilizando o rock ridge, o mesmo mantém permissões das pastas e arquivos e entende
+a cópia de links simbólicos 
+
+genisoimage -R -o imagem-rock.iso /home/biophas/ 
+
+# El torito é criado para criar um disco bootável 
+
+# HFS cria um cd hibrído podendo ser lido para um sistema mactoshi apple 
+
+# udf foi criado para substituir o ISO9660, porém não pega propriedades dos arquivos e pastas 
+
+genisofile -o imagem-udf.iso -udf /home/biophas 
+
+# No final a imagem iso extraida de diretórios podem ser salvas em disco cd/dvd 
+
+wodim dev=/dev/sr0 imagem.iso 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
