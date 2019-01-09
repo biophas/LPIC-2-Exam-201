@@ -1,0 +1,81 @@
+# 203.3 - Criando e Config. Opções dos Sistemas de Arquivos - Criptografia
+
+apt-get install cryptsetup -y
+
+Plain DM-CRYPT ou LUKS 
+
+--> Para configurar uma partição com o cryptsetup utilizando o formato lunks é: 
+
+# Cryptografando uma partição 
+
+cryptsetup -v --verify-passphrase lunksFormat /dev/sdc5 
+
+--> Rodar um lsblk -f para verificar o tipo de partição 
+
+# Ativando uma partição cryptografada 
+
+cryptsetup open --type luks /dev/sdc5 part-segura 
+
+lsblk -f 
+
+ls -ltr /dev/mapper/part-segura 
+
+# Formatando a partição criptografada 
+
+mkfs.ext4 /dev/mapper/part-segura 
+
+# Verificando o status de uma partição criptografada 
+
+cryptosetup status part-segura 
+
+# Verificando status de todas as partições device-mapper 
+
+dmsetup ls 
+
+# Fechando uma partição criptografada 
+
+cryptsetup closed part-segura 
+lsblk -f 
+
+--> Não aparece o dev-mapper part-segura 
+
+# Montando uma partição no boot do sistema, é necessário editar o arquivo /etc/crypttab e /etc/fstab 
+
+--> Edite o arquivo /etc/crypttab, caso não exista a mesma pode ser criada 
+
+vim /etc/crypttab 
+
+part-segura /dev/sdc5 none luks 
+
+--> Ao escolher o atributo none, a senha é solicitada toda vez que o sistema é reiniciado.
+
+# Configurando o /etc/fstab 
+
+vim /etc/fstab 
+
+/dev/mapper/part-segura /mnt/luks ext4 auto defaults 0 0 
+
+# Reboot na máquina, e durante a inicialização é solicitado a senha criptografada, somente após a digitação o sistema irá iniciar.
+
+# Configurando a senha para montagem automática da partição criptografada 
+
+--> Criar um arquivo chamado /senha e digitar a senha da partição segura 
+--> Editar o arquivo /etc/crypttab e no local de none colocar /senha ficando da seguinte forma: 
+
+part-segura /dev/sdc5 /senha luks 
+
+# Adicionando a senha as chaves seguras 
+
+cryptsetup lunksAddKey /dev/sdb2 /senha
+
+
+
+
+
+
+
+
+
+
+
+
