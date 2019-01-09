@@ -1,0 +1,86 @@
+
+
+# 203.3 - Criando e Config. Opções dos Sistemas de Arquivos - Montagem Automática
+
+
+autofs 
+
+Pacotes autofs 
+
+Após a instalação do autofs é iniciado um processo chamado de automount que pode ser checado com o comando 
+
+
+ps -aux | grep automount 
+
+
+# Arquivo de configuração do autofs é /etc/auto.master
+
+vim /etc/auto.master e incluir a linha 
+
+/mnt/autofs /etc/auto.biophas --timeout 15 
+
+
+# Criando o arquivo auto.biophas 
+
+vim /etc/auto.biophas 
+
+biophas -fstype=auto  :/dev/sdb1 
+
+mkdir /mnt/autofs 
+
+systemctl stop autofs.service 
+systemctl start autofs.service 
+
+cd /mnt/autofs 
+
+cd biophas 
+
+df -h 
+
+--> Retornará o diretório montado de forma automática
+
+--> Ao sair 15 segundos depois o diretório será desmontado
+
+# Configurando o automount via systemd 
+
+mkdir /mnt/automount 
+
+
+vim /etc/systemd/systemc/mnt-automount.mount 
+
+
+[Unit]
+
+Description=Teste de montagem automática 
+
+[Mount] 
+
+What=/dev/sdb2 
+Where=/mnt/automount
+#TimeoutIdleSec=15
+[Install]
+
+WantedBy=multi-user.target 
+
+vim /etc/systemd/systemc/mnt-automount.automount 
+
+[Unit]
+
+Description=Checagem automática  
+
+[Automount] 
+
+What=/dev/sdb2 
+Where=/mnt/automount
+
+[Install]
+
+WantedBy=multi-user.target 
+
+systemctl daemon-reload 
+
+
+
+
+
+
