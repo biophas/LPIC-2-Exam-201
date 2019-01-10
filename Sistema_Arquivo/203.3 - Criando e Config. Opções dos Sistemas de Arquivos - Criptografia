@@ -8,7 +8,7 @@ Plain DM-CRYPT ou LUKS
 
 # Cryptografando uma partição 
 
-cryptsetup -v --verify-passphrase lunksFormat /dev/sdc5 
+cryptsetup -v --verify-passphrase luksFormat /dev/sdc5 
 
 --> Rodar um lsblk -f para verificar o tipo de partição 
 
@@ -34,7 +34,8 @@ dmsetup ls
 
 # Fechando uma partição criptografada 
 
-cryptsetup closed part-segura 
+cryptsetup luksClose part-segura 
+
 lsblk -f 
 
 --> Não aparece o dev-mapper part-segura 
