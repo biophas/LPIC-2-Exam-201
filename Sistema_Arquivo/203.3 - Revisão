@@ -1,0 +1,126 @@
+# 203.3 - Revisão 
+
+
+/etc/fstab
+
+Dispositivo mountpoint  type config dump  fsck 
+
+/dev/sdb1   /mnt/mountpoint ext4  defaults 0  2 
+
+# Comando mount 
+
+--> Listando as partições montadas no momento
+
+cat /etc/mtab 
+cat /proc/mounts 
+mount 
+
+--> Formatando partições 
+
+mount -t ext4 /dev/sdb1
+mount.ext4 /dev/sdb1 
+
+--> Montando partições 
+
+mount /mnt/mountpoint (Caso exita a entrada no fstab)
+mount /dev/sdb1 (Caso exita a entrada no fstab)
+
+mount /dev/sdb1 /mnt/mountpoint (Caso não exista a entrada no fstab)
+mount /dev/sdb2 /mnt/mountpoint (Caso não exista a entrada no fstab)
+
+--> Montando partições que estã com configuração "auto" no fstab 
+
+mount -a 
+
+--> Montando disco pelo UUID 
+
+mount -U <UUID> 
+mount UUID=<UUID>
+
+# Redefinindo configurações de uma partição já montada
+
+mount -o remount,rw /dev/sdb1 
+
+# Princpais opções do mount, utilizads também no /etc/fstab 
+
+ro - Apenas Leitura
+rw - Leitura e escrita 
+
+async - Asincrona 
+sync  - Síncrona 
+auto - Montagem durante o boot e pela opção -a do mount 
+noauto - Não monta automaticamente 
+user - Permite que qualquer usuário possa montar a partição, mas apenas ele pode desmontar
+users - Permite que todos os usuários possam montar e desmontar a partição
+owner - Propietário do disco
+remount - Usado para remontar uma partição já montada, mas com outras opções 
+uid - Define um usuário dono do diretório (Disponível apenas em alguns tipos de filesystems como fat e ntfs)
+gid - Define um grupo para ser dono do diretório (Disponível apenas em alguns tipos de filesystems como fat e ntfs)
+exec - É permitido a execução na partição
+noexec - Não é permitido a execução na partição 
+defaults - rw, suid,dev,exec,auto,nouser e async 
+
+
+# Comandos úteis 
+
+blkid 
+lsblk 
+e2label /dev/sdb1 (Mostra o label de uma partição) 
+findmnt (Exibe uma relação de todas as partições montadas)
+sync Efetiva a gravação de dados que estão em cache/buffer da memória para o disco
+umount Usado para desmontar as partições. 
+
+
+# Criação e montagem da área swap 
+
+mkswap /dev/sdb1
+swapon /dev/sdb1 
+
+--> Para verificar o status de swap 
+
+cat /proc/swaps 
+swapon -s 
+free -h 
+swapon -a Inclui na área swap as partições/arquivos definidos no /etc/fstab 
+
+/dev/sdb1 swap swap defaults 0 0 
+/dev/sdb1 none swap sw  0 0 
+
+# Configuração no /etc/fstab
+
+--> Criando arquivo como swap 
+
+dd if=/dev/zero of=/arquivoswap bs=1024k count=1000 
+
+mkswap /arquivoswap
+swapon /arquivoswap 
+
+# Configuração no /etc/fstab 
+
+/arquivoswap swap swap defaults 0 0 
+/arquivoswap none swap  sw  0 0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
