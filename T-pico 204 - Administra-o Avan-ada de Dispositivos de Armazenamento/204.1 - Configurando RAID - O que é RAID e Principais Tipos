@@ -1,0 +1,45 @@
+# 204.1 - Configurando RAID - O que é RAID e Principais Tipos
+
+# RAID 
+
+Redundant Array of Inexpressives Drives (ou Independent Disks)
+
+Método para agrupar vários dispositvos em uma única unidade lógica 
+
+Pode ser feito via hardware ou via software 
+
+RAID levels 
+
+RAID 0 (Stripping)
+RAID 1 (Mirroring)
+RAID 2 
+RAID 3
+RAID 4 
+RAID 5
+RAID 6 
+
+RAID Híbridos 
+
+RAID 01 
+RAID 10
+RAID 50 
+RAID 100
+JBOD (RAID N + N)
+
+
+RAID 0 (Stripping) Não tem redundância 
+
+RAID 1 (Mirroring) espelha os discos 
+
+RAID 5 funciona a partir de 3 discos 
+
+
+
+
+
+
+
+
+
+
+
