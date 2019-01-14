@@ -1,0 +1,125 @@
+# 204.1 - Configurando RAID - mdadm e proc mdstat
+
+
+--> Instalação do mdadm 
+
+apt-get install mdadm 
+
+--> Configurando o raid0 
+
+
+mdadm -v -C /dev/md0 -l0 -n2 /dev/sdc1 /dev/sdd1 
+
+mkfs.ext4 /dev/md0 
+
+lsblk -f 
+mdadm --detail /dev/md0 
+cat /proc/mdstat 
+
+# O mesmo funciona através de módulos.
+
+lsmod | grep raid 
+
+--> Populando arquivo de configuração do mdadm 
+
+vim /etc/mdadm/mdadm.conf 
+
+mdadm -v --detail --scan 
+
+mdadm -v --detail --scan >> /etc/mdadm/mdadm.conf 
+
+--> Configurando o raid1
+
+mdadm -v -C /dev/md1 -l1 -n2 /dev/sdc2 /dev/sdd2 
+
+mkfs.ext4 /dev/md1 
+
+mkdir /mnt/raid1 
+
+mount /dev/md1 /mnt/raid1 
+
+mdadm -v --detail --scan >> /etc/mdadm/mdadm.conf 
+
+cat /proc/mdstat
+mdadm -v --detail /dev/md1 
+mdadm -v --detail --scan 
+
+# Silumando falha de disco 
+
+mdadm --mange --fail /dev/md128 /dev/sdd2 
+
+--> Consultando falha de disco 
+
+mdadm -v --detail /dev/md128 
+
+cat /proc/md128 
+
+
+--> Removendo o disco do raid1 
+
+mdadm /dev/md128 -r /dev/sdd2 
+
+mdadm /dev/md128 -a /dev/sdd2 
+
+cat /proc/mdstat 
+
+mdadm -v --detail /dev/md128 
+
+Obs: Ele mostra o disco sendo recuperado. 
+
+
+# Baixar um raid 
+
+mdadm --stop /dev/md0 
+# Subir um radi 
+
+mdadm --asssemble --run /dev/md0 
+
+# Examinar um disco do raid 
+
+mdadm --examine /dev/sdc2
+
+# Iniciando todos os raid de um vez
+
+mdadm --assemble --scan 
+
+# Deletando as raid 
+
+mdadm --remove /dev/md127 
+mdadm --remove /dev/md128
+
+--> Para exucluir definitvamente é necessário zerar as informações de superblock, pois ao rodar o comando 
+madadm --assemble --scan ele fará uma leitura e criará os discos novamente. 
+
+mdadm --assemble --scan 
+
+# Criando raid5 
+
+mdadm -v -C /dev/md0 -l5 -n3 /dev/sdc1 /dev/sdc2 /dev/sdd1 
+
+cat /proc/mdstat 
+mdadm -v --detail /dev/md0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
