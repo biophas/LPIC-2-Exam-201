@@ -1,0 +1,32 @@
+# 204.2 - Ajustando o Acesso aos Dispositivos de Armazenamento - SAN
+
+
+NAS - Network-Attached Storage
+
+SAN - Storage Area Netowork 
+
+FCP: Fibre Channel Protocol - Mapeamento do protocolo SCSI sobre fibra ótica 
+AoE: ATA over Ethernet 
+FcoE: Fibre Channel over Ethernet 
+iCSI: Mapeamento do SCSI sobre o protocolo IP 
+
+SAN WWID WWN 
+
+
+WWID: World Wide Identifier  
+WWN: World Wide Name 
+
+Identificado único utilizado entre host e storage 
+
+Em uma "rede FC", o WWID e WWN é equivalente ao MAC em uma rede Ethernet 
+
+# Command 
+
+ls -ltr /dev/disk/by-id/ 
+
+/lib/udev/scsi_id -g /dev/sda 
+cat /proc/scsi/scsi 
+
+
+
+
