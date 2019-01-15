@@ -1,0 +1,26 @@
+# 204.2 - Ajustando o Acesso aos Dispositivos de Armazenamento - hdparm, sdparm
+
+
+--> O Comando hdparm deve ser instalado 
+
+hdparm: get/set SATA/IDE device paramenters 
+sdparm: Access SCSI modes pages; read VPD pages, send simple SCSI commands 
+apt-get install hdparm -y 
+
+hdparm /dev/sda 
+
+
+--> Informações do dispositivo 
+
+hdparm -i /dev/sda 
+hdparm -v /dev/sda 
+hdparm /dev/sda 
+
+--> Teste de leitura 
+
+hdparm -t /dev/sda 
+
+--> Teste de buffer 
+
+hdparm -T /dev/sda
+
