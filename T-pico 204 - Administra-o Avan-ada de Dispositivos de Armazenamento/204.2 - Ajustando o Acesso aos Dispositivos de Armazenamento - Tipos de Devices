@@ -1,0 +1,53 @@
+# 204.2 - Ajustando o Acesso aos Dispositivos de Armazenamento - Tipos de Devices
+
+
+IDE / ATA 
+
+IDE: Ingrated Drive Eletronics 
+
+ATA: Advanced Technology Attachament (Padronização do IDE)
+
+Placa mães antigas possuem 2 interfaces IDE, uma primária e uma secundária 
+
+Cada interface podem receber 2 devices, uma master e outra slave 
+
+No Linux os dispositivos IDE/ATA são identificados como /dev/hd* 
+
+SATA 
+
+SATA: Serial Advanced Technology Attachment
+
+Cada inteface pode receber um device 
+
+É mapeado no Linux como /dev/sd* 
+
+SCSI 
+
+SCSI: Small Computer System Inteface 
+
+2 Tipos 
+
+8 bits: 7 dispositivos + a controladora 
+16 bits: 15 dispositivos + a controladora 
+
+É mapeado no Linux como /dev/sd* 
+
+SCSI Identificadores 
+
+Channel ID: Identificação do barramento SCSI 
+SCSI ID/Targert ID/Id do dispositivo: identificador do dispositivo, de 0 a 7 de 0 a 15. 
+
+LUN: Logical Unit Number 
+
+Identifica uma unidade lógica 
+
+
+
+
+
+
+
+
+
+
+
