@@ -46,7 +46,7 @@ mdadm -v --detail --scan
 
 # Silumando falha de disco 
 
-mdadm --mange --fail /dev/md128 /dev/sdd2 
+mdadm --manage --fail /dev/md128 /dev/sdd2 
 
 --> Consultando falha de disco 
 
@@ -90,6 +90,14 @@ mdadm --remove /dev/md128
 
 --> Para exucluir definitvamente é necessário zerar as informações de superblock, pois ao rodar o comando 
 madadm --assemble --scan ele fará uma leitura e criará os discos novamente. 
+
+
+mdadm --zero-superblock /dev/sdc1
+mdadm --zero-superblock /dev/sdc2
+mdadm --zero-superblock /dev/sdd1
+mdadm --zero-superblock /dev/sdd2
+
+
 
 mdadm --assemble --scan 
 
