@@ -1,9 +1,107 @@
 # 204.2 - Ajustando o Acesso aos Dispositivos de Armazenamento - iSCSI
 
 
-# pacotes 
-tgt
-open-scsi
+# pacotes Debian
+
+tgt: Linux SCSI target user-space daemon and tools 
+
+open-scsi: Initiator tools 
+
+
+# pacotes Red Hat 
+
+targetcli: 
+iscsi-initiator-utils
+
+# Arquivo conf 
+
+
+vim /etc/tgt/targets.conf 
+
+<target iqn.2019-01.br.com.dominioteste.linux-debian:target1>
+  backing-store /dev/sdd
+  backing-store /dev/sdb6 
+</target>
+
+# Reiniciar o tgt 
+
+systemctl restart tgt.serivice 
+
+tgt-admin --show 
+
+### fim do processo no servidor 
+
+# Configurando o cliente 
+
+--> Descobrir os alvos é o primeiro passo 
+
+iscsiadm -m --discovery -t sendtargets -p 192.168.1.200 
+
+# Verificando informações de conexão com o target 
+
+iscsiadmin -m session -P3 
+
+ou 
+
+cat /proc/scsi/scsi 
+
+Número 00 geralmente é a numeração da controladora 
+
+
+fdisk -l 
+
+mount /dev/sde /mnt/tgt1 
+mount /dev/sdf /mnt/tgt1 
+
+
+# Pode ser configurado diversos LUN conforme abaixo 
+
+<target iqn.2019-01.br.com.dominioteste.linux-debian:target1>
+  backing-store /dev/sdd
+  lun 1 
+</target>
+
+<target iqn.2019-01.br.com.dominioteste.linux-debian:target2>
+  backing-store /dev/sdb6 
+  lun 2 
+</target>
+
+systemctl restart tgt.service 
+
+tgt-admin --show 
+
+# Desconectando do target 
+
+iscsiadmin -m node -u 
+
+# Realizado o dsicovery
+
+iscsiadm -m --discovery -t sendtargets -p 192.168.1.200
+
+# Realizando login no target 
+
+iscsi admin -m node -p 192.168.0.200 --taget=iqn.2019-01.br.com.dominioteste.linux-debian:target1 --login 
+iscsi admin -m node -p 192.168.0.200 --target=iqn.2019-01.br.com.dominioteste.linux-debian:target2 --login
+
+iscsi -m session -P3 
+
+# Diretório com informações sobre os nodes e targets 
+
+/var/lib/iscsi 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
