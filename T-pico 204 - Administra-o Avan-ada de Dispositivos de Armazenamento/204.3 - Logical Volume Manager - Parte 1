@@ -27,6 +27,10 @@ pvcreate vgbiophas -s2 /dev/sdc1 /dev/sdc2 /dev/sdd1
 
 pvs 
 
+# Criando volume group 
+
+vgcreate grupo1 /dev/sdc1 /dev/sdc2 /dev/sdd1 
+
 # Ativando o volume grupo 
 
 vgchange -a y vgbiophas 
@@ -43,6 +47,9 @@ lvdisplay
 dmsetup ls
 
 # Formatando e montando a partição lvm 
+
+mkfs.ext4 /dev/mapper/grupo1-lvbphs 
+
 
 
 
