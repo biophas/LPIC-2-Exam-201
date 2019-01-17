@@ -1,0 +1,56 @@
+# 204.3 - Logical Volume Manager - Parte 1 
+
+# Instalação pacote lvm2 
+
+apt-get install lvm2 
+
+# Arquivo lvm 
+
+cat /etc/lvm/lvm.conf 
+
+# Alterando o tipo de disco para lvm
+
+alterar para o tipo 8e lvm 
+
+# Criando o phisical volume 
+
+pvcreate /dev/sdc1
+pvcreate /dev/sdc2 
+
+# listando os pvs 
+
+pvs ou pvdisplay 
+
+# Criando o volume grup 
+
+pvcreate vgbiophas -s2 /dev/sdc1 /dev/sdc2 /dev/sdd1 
+
+pvs 
+
+# Ativando o volume grupo 
+
+vgchange -a y vgbiophas 
+
+# Criando o lv 
+
+lvcreate -L 10G gbiophas -n lvbiophas
+lvcreate -l1000 -n vgbiophas-n lvbiophas 
+
+# Listando os lvs criados 
+
+lvs 
+lvdisplay
+dmsetup ls
+
+# Formatando e montando a partição lvm 
+
+
+
+
+
+
+
+
+
+
+
