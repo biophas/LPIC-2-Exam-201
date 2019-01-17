@@ -1,1 +1,13 @@
 # 204.2 - Ajustando o Acesso aos Dispositivos de Armazenamento - iSCSI - iscsid
+
+
+
+iscsid - Daemon do iscsi, ele abre um socket com um PID
+
+# Arquivos de configuração do iscsi  
+
+/etc/iscsi/iscsid.conf 
+/etc/iscsi/initiatorname.scsi 
+
+
+
