@@ -1,0 +1,79 @@
+# 204.3 - Logical Volume Manager - Parte 2
+
+
+Passo 1: Aumentando o tamanho de volume lógico
+
+lvextend -L 15G /dev/grupo1/lvgroup
+
+Passo 2: Aumentando o tamanho de um filesystems 
+
+resize2fs /dev/mapper/grupo1-lvgroup
+
+Diminuindo o tamanho de um filesystems 
+
+e2fsck -f /dev/mapper/grupo1-lvgroup
+resize2fs /dev/mapper/grupo1-lvgroup 10G
+
+Dimunuindo o tamanho de volume lógico 
+lvreduce -L 13G /dev/grupo1/lvgroup
+
+
+
+# Removendo volume lógico 
+
+
+vgreduce grupo1 /dev/sdc2
+
+root@debian:~# pvs
+  PV         VG     Fmt  Attr PSize  PFree 
+  /dev/sdc1  grupo1 lvm2 a--  10,00g     0 
+  /dev/sdc2  grupo1 lvm2 a--  10,00g  4,99g
+  /dev/sdd1         lvm2 ---  10,00g 10,00g
+
+Obs. Só consigo remover disco de volume group caso ele não esteja sendo uutilizado 
+
+# Renomenado um vg ou um lv 
+vgrename grupo1 grupo2
+
+# Renomeando um lv 
+
+lvrename /dev/grupo2/lvgroup /dev/grupo2/lvgroup2
+
+# Criando snapshot 
+
+
+lvcreate -L1G -s -n teste-snapshot /dev/mapper/grupo2-lvgroup2
+
+Obs. O tamanho do snapshot pode ser de 10 a 20% do total dos arquivos 
+
+Salvo em: 
+
+/dev/mapper/grupo2-teste--snapshot
+  
+Montando: 
+
+mount /dev/mapper/grupo2-teste--snapshot /mnt/lvm2 
+
+# Removendo um snapshot 
+
+lvs
+umount /mnt/lvm2
+lvremove /dev/grupo2/teste-snapshot
+
+
+
+
+  516  whatis resize2fs 
+  517  resize2fs /dev/mapper/grupo1-lv--bphs 
+  520  resize2fs /dev/mapper/grupo1-lv--bphs 
+  593   
+  598  resize2fs /dev/mapper/grupo1-lvgroup 12G
+  600  resize2fs /dev/mapper/grupo1-lvgroup 12G
+  606  resize2fs -L 15G /dev/mapper/grupo1-lvgroup 
+  607  resize2fs -L15G /dev/mapper/grupo1-lvgroup 
+  608  history resize2fs
+  609  history | grep resize2fs
+
+
+
+
