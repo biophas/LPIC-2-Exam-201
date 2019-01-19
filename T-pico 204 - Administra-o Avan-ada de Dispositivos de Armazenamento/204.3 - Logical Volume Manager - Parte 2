@@ -61,6 +61,39 @@ umount /mnt/lvm2
 lvremove /dev/grupo2/teste-snapshot
 
 
+# Criando um snapshot
+
+cp -prf /etc/* .
+
+
+lvcreate -L1G -s -n teste-snapshot /dev/mapper/grupo1-lv_exerc2
+
+Obs. O tamanho do snapshot pode ser de 15% a 20% do tamanho real do diretório lvm 
+
+# Aumentando o tamanho do volume group 
+
+vgextend grupo1 /dev/sdb3
+
+# Listando snapshot criado 
+
+ls -ltr /dev/mapper/grupo1-teste--snapshot
+lrwxrwxrwx 1 root root 7 jan 18 23:14 /dev/mapper/grupo1-teste--snapshot -> ../dm-4
+
+# Aumentando o tamanho de logical volume 
+
+--> É necessário rodar um e2fsck primeiro 
+
+lvextend -L 40G /dev/grupo2/lv_exerc3
+
+e2fsck -f /dev/mapper/grupo2-lv_exerc3
+
+resize2fs /dev/mapper/grupo2-lv_exerc3 
+
++4G Adiciona 4 gigas 
+4G informa o tamanho do LV 
+
+
+
 
 
   516  whatis resize2fs 
