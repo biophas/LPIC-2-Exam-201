@@ -44,7 +44,8 @@ route add default gw 192.168.0.1
 route del -net 10.1.0.0/24 
 
 
-Obs. O o gateway informado tem que na faixa de alcance da rede atual 
+Obs. O o gateway informado tem que está na faixa de alcance da rede atual 
+
 
 
 
