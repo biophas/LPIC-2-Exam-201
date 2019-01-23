@@ -1,0 +1,51 @@
+# 205.1 - Configurações Básicas de Redes - ifconfig e route
+
+ifconfig 
+ifconfig -a
+ifconfig eth0 down
+ifconfig eth0 up 
+
+ifconfig eth1 192.168.0.220 
+
+ifconfig eth1 10.0.0.50 netmask 255.255.255.0 up
+
+ifconfig eth1:0 172.168.0.10
+ifconfig eht1 add 150.150.100.200
+
+
+# Altera MAC 
+
+ifconfig eht1 hw ether 08:07:08:08:08:08
+
+
+# route 
+
+route add -net 192.168.100.0/24 gw 192.168.0.2
+route add -net 192.168.200.0 netmask 255.255.255.0 gw 192.168.0.60
+route add -net 10.0.0.0/24 gw 192.168.0.70
+
+route add -net 10.1.0.0/24 gw 192.168.0.80 eth0
+
+# removendo uma rota default 
+
+route del default 
+
+--> Testar o ping 
+
+# Adicionando rota default
+
+route add default gw 192.168.0.1
+
+--> Testar o ping 
+
+
+# Removendo uma rota 
+
+route del -net 10.1.0.0/24 
+
+
+Obs. O o gateway informado tem que na faixa de alcance da rede atual 
+
+
+
+
