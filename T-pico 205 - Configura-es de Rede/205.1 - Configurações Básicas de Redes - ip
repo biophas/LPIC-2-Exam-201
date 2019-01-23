@@ -1,0 +1,115 @@
+# 205.1 - Configurações Básicas de Redes - ip
+
+ip link show
+ip link show eth0
+
+
+ip addr show
+ip address show
+
+# Adicionando um ip a interface 
+
+ip addr add 10.0.0.50/24 dev eth1
+
+
+# Consultando ajuda 
+
+ip address help
+
+Link=interface
+Address=IPś 
+
+# Rotas com o comando ip 
+ip route show
+ip route list
+ip route add 172.16.30.0/24 via 192.168.0.100
+
+# Removendo uma rota default 
+
+ip route del default
+
+ip route add default via 192.168.0.1 dev eth0
+
+ip route show
+ip route list 
+
+root@debian:~# ip help
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] -batch filename
+where  OBJECT := { link | address | addrlabel | route | rule | neigh | ntable |
+                   tunnel | tuntap | maddress | mroute | mrule | monitor | xfrm |
+                   netns | l2tp | fou | macsec | tcp_metrics | token | netconf | ila }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -d[etails] | -r[esolve] |
+                    -h[uman-readable] | -iec |
+                    -f[amily] { inet | inet6 | ipx | dnet | mpls | bridge | link } |
+                    -4 | -6 | -I | -D | -B | -0 |
+                    -l[oops] { maximum-addr-flush-attempts } | -br[ief] |
+                    -o[neline] | -t[imestamp] | -ts[hort] | -b[atch] [filename] |
+                    -rc[vbuf] [size] | -n[etns] name | -a[ll] | -c[olor]}
+
+root@debian:~# ip addre help
+Usage: ip address {add|change|replace} IFADDR dev IFNAME [ LIFETIME ]
+                                                      [ CONFFLAG-LIST ]
+       ip address del IFADDR dev IFNAME [mngtmpaddr]
+       ip address {save|flush} [ dev IFNAME ] [ scope SCOPE-ID ]
+                            [ to PREFIX ] [ FLAG-LIST ] [ label LABEL ] [up]
+       ip address [ show [ dev IFNAME ] [ scope SCOPE-ID ] [ master DEVICE ]
+                         [ type TYPE ] [ to PREFIX ] [ FLAG-LIST ]
+                         [ label LABEL ] [up] [ vrf NAME ] ]
+       ip address {showdump|restore}
+IFADDR := PREFIX | ADDR peer PREFIX
+          [ broadcast ADDR ] [ anycast ADDR ]
+          [ label IFNAME ] [ scope SCOPE-ID ]
+SCOPE-ID := [ host | link | global | NUMBER ]
+FLAG-LIST := [ FLAG-LIST ] FLAG
+FLAG  := [ permanent | dynamic | secondary | primary |
+           [-]tentative | [-]deprecated | [-]dadfailed | temporary |
+           CONFFLAG-LIST ]
+CONFFLAG-LIST := [ CONFFLAG-LIST ] CONFFLAG
+CONFFLAG  := [ home | nodad | mngtmpaddr | noprefixroute | autojoin ]
+LIFETIME := [ valid_lft LFT ] [ preferred_lft LFT ]
+LFT := forever | SECONDS
+TYPE := { vlan | veth | vcan | dummy | ifb | macvlan | macvtap |
+          bridge | bond | ipoib | ip6tnl | ipip | sit | vxlan | lowpan |
+          gre | gretap | ip6gre | ip6gretap | vti | nlmon | can |
+          bond_slave | ipvlan | geneve | bridge_slave | vrf | hsr | macsec }
+
+root@debian:~# ip route help
+Usage: ip route { list | flush } SELECTOR
+       ip route save SELECTOR
+       ip route restore
+       ip route showdump
+       ip route get ADDRESS [ from ADDRESS iif STRING ]
+                            [ oif STRING ] [ tos TOS ]
+                            [ mark NUMBER ] [ vrf NAME ]
+       ip route { add | del | change | append | replace } ROUTE
+SELECTOR := [ root PREFIX ] [ match PREFIX ] [ exact PREFIX ]
+            [ table TABLE_ID ] [ vrf NAME ] [ proto RTPROTO ]
+            [ type TYPE ] [ scope SCOPE ]
+ROUTE := NODE_SPEC [ INFO_SPEC ]
+NODE_SPEC := [ TYPE ] PREFIX [ tos TOS ]
+             [ table TABLE_ID ] [ proto RTPROTO ]
+             [ scope SCOPE ] [ metric METRIC ]
+INFO_SPEC := NH OPTIONS FLAGS [ nexthop NH ]...
+NH := [ encap ENCAPTYPE ENCAPHDR ] [ via [ FAMILY ] ADDRESS ]
+	    [ dev STRING ] [ weight NUMBER ] NHFLAGS
+FAMILY := [ inet | inet6 | ipx | dnet | mpls | bridge | link ]
+OPTIONS := FLAGS [ mtu NUMBER ] [ advmss NUMBER ] [ as [ to ] ADDRESS ]
+           [ rtt TIME ] [ rttvar TIME ] [ reordering NUMBER ]
+           [ window NUMBER ] [ cwnd NUMBER ] [ initcwnd NUMBER ]
+           [ ssthresh NUMBER ] [ realms REALM ] [ src ADDRESS ]
+           [ rto_min TIME ] [ hoplimit NUMBER ] [ initrwnd NUMBER ]
+           [ features FEATURES ] [ quickack BOOL ] [ congctl NAME ]
+           [ pref PREF ] [ expires TIME ]
+TYPE := { unicast | local | broadcast | multicast | throw |
+          unreachable | prohibit | blackhole | nat }
+TABLE_ID := [ local | main | default | all | NUMBER ]
+SCOPE := [ host | link | global | NUMBER ]
+NHFLAGS := [ onlink | pervasive ]
+RTPROTO := [ kernel | boot | static | NUMBER ]
+PREF := [ low | medium | high ]
+TIME := NUMBER[s|ms]
+BOOL := [1|0]
+FEATURES := ecn
+ENCAPTYPE := [ mpls | ip | ip6 ]
+ENCAPHDR := [ MPLSLABEL ]
