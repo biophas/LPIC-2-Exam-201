@@ -1,0 +1,39 @@
+# 205.1 - Configurações Básicas de Redes - arp
+
+arp -n 
+
+--> Ao simplesmente pingar um IP ao responder o mac addres é inserido na tabela arp, e pode ser listado com o comando:
+
+ping 192.168.0.200
+arp -n
+
+ping 192.168.0.220
+arp -n
+
+# Removendo entrada na tabel arp 
+
+arp -d 192.168.0.220
+
+# Adicionando entrada na tabela arp
+
+arp -s 192.168.0.222 00:01:02:03:03:09
+
+# Adicionando mac address em massa 
+
+vim teste
+
+192.168.0.240 00:01:02:03:03:09
+192.168.0.241 01:01:02:03:03:09
+
+wq
+
+arp -f teste 
+
+# arpwatch 
+
+whatis arpwatch
+arpwatch (8)         - keep track of ethernet/ip address pairings
+
+systemctl status arpwatch.service
+
+
