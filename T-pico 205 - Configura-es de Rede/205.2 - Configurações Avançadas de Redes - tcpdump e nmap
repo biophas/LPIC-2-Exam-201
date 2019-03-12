@@ -1,0 +1,75 @@
+205.2 - Configurações Avançadas de Redes - tcpdump e nmap
+
+
+# Mostra todas as informações 
+
+tcpdump 
+
+# Mostra as informações, porém não resolve nomes
+
+tcpdump -n 
+
+# Mostra as informações de pacotes icmp 
+
+tcpdump -n icmp
+
+# Mostra as informações capturando 10 pacotes 
+
+tcpdump -n icmp -c10 
+
+# Mostra as informações capturando informações de uma determinada interface 
+
+tcpdump -n icmp -c10 -i eth0 
+
+# Mostra o sumário dos pacotes capturado e gera um arquivo de saída denominado file.pcap 
+
+tcpdump -n icmp -c10 -w arquivo.pcap 
+
+# Lendo arquivo 
+
+tcpdump -r arquivo.pcap 
+
+# Analisando o trafego de um determinado site
+
+tcpdump -n host www.lpi.org 
+
+# Mostra informações do source
+
+tcpdump -n src www.lpi.org 
+
+# Mostra informações do destination 
+
+tcpdump -n dst www.lpi.org 
+
+# Mostra informações capturadas pela porta 
+
+tcpdump -n port 80 
+
+# Mostra informações capturadas de todas a rede 
+
+tcpdump -n net 192.168.1.0 
+
+# Mostra as informações em range de porta 
+
+tcpdump -n src/dst portrange 80-100
+
+NMAP
+
+# Fazendo scan de forma rápida na rede 
+
+nmap 192.168.1.0/24 -F
+
+# Mostrar o sistema operacional dos hosts na rede 
+
+nmap 192.168.1.0/24 -O 
+
+# Mostrar informações de versões dos serviços 
+
+nmap 192.168.1.210 -sV
+
+# Mostrar informações de uma determinada porta 
+
+nmap 192.168.1.210 -p 20,80
+
+
+
