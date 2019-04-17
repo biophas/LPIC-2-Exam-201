@@ -1,0 +1,31 @@
+--> 206.2 - Operações de Backup - Conceitos
+
+Tipos de Backup 
+
+Full - Quando é realizado todo o backup
+
+Incremental - É backup incremental onde é bacapeado os dados adicionais partindo sempre da versão anterior.
+
+Diferencial - É o backup de dados diferencial sempre do último backup full.
+
+# Soluções 
+
+Bacula 
+Amanda 
+Bareos 
+BackupPC
+
+
+206.2 - Operações de Backup - Comandos Básicos
+
+A fita no Linux é reconhecida com as duas nomeclaturas 
+
+nst0 ou st0
+
+st0 - Rebobina a fita após a conclusão do backup 
+nst0 - Não rebobina a fita 
+
+
+
+
+
