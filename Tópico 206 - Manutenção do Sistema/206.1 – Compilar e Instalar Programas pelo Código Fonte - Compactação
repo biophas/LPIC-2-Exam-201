@@ -1,0 +1,44 @@
+206.1 – Compilar e Instalar Programas pelo Código Fonte - Compactação
+
+
+--> Baixando o pacote fonte do programa 
+
+# tar.gz 
+
+tar vzxpf pacote.tar.gz 
+ou
+gunzip pacote.tar.gz 
+tar xvpf pacote.tar
+
+# tar.bz2 
+
+tar jvxpf pacote.tar.bz2
+ou 
+bunzip2 pacote.tar.bz2
+tar xvpf pacote.tar
+
+# tar.xz 
+
+tar Jvxpf pacote.tar.xz
+ou
+unxz pacote.tar.xz
+tar xvpf pacote.tar
+
+
+--> Após descompactar observar os seguintes arquivos 
+
+- README > Instruçõesde instalação  
+- Makfile.in > Contém os parâmetros no qual será gerado o arquivo Makefile
+- .Configure > Faz uma checagem na máquina, consultando drivers, bibliotecas e utiliza os parâmetros do Makefile.in para gerar o Makefile
+
+# .configure 
+
+
+./configure prefix=/usr/src
+
+./configure --help 
+
+--> Após a criação do Makefile utiliza-se o comando make 
+
+--> Posteriormente utiliza-se o comando make install, para configurar o programa no diretório escolhido ou que foi informado dentro do arquivo Makefile.in 
+
