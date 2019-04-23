@@ -9,23 +9,69 @@ tar -cvfp arquivo.tar /etc
 
 # Gerando backup incremental 
 
-tar -g arquivo-incr1.tar /etc 
+tar -cvfp backup.tar -g controle.txt /etc
+tar -cvfp backup-incrm1.tar -g controle.txt /etc
+
+tar --listed-incremental=file /etc  
 
 # Excluindo um determinado diretório de um backup
 
-tar --exclude=/etc/grub/ 
-
+tar -cvfp backup.tar /etc --exclude=/etc/grub/
 
 
 # Comando cpio 
 
-# Dispositivos de fitas 
+find /etc/*.conf | cpio -vo > backup.cpio 
+
+# Usando comando cpio com compressão 
+
+find /etc/*.conf | cpio -o | gzip -c > backup.cpio.gz
+
+# Descompactando um arquivo. cpio 
+
+gunzip backup.cpio.gz 
+cpio -ivdm < backup.cpio 
+
+# Realizando backup com o comando dd 
+
+dd if=/dev/sda1 of=sda1.img bs=1024
+
+# Lendo um arquivo com o comando dd 
+
+dd if=sda1.img of=/dev/sda1 
+
+Obs. O comanfo dd copia toda a partição, inclusive os espaços em branco. 
+
+
+
+# Realizando backups para Dispositivos de fitas 
 
 /dev/st0 Rebobina a fita após a operação
 /dev/nst0 não rebobina a fita após a operação
 
+tar -cvfp /dev/st0 /etc 
+
+# Extraindo arquivos específicos das fitas 
+
+tar -xvfp /dev/nst0 '*.conf*
 
 # Comando mt (Magnetic tape) 
 
-mt /dev/st0 rewind 
+# Rebobina a fita 
+
+mt -f /dev/st0 rewind 
+
+# Rebobina e dispensa a fita 
+
+mt -f /dev/nst0 offline 
+
+# Mostra o status 
+
+mt -f /dev/nst0 status 
+
+# Indo para o final da fita 
+
+mt -f/dev/nst0 eod 
+
+
 
