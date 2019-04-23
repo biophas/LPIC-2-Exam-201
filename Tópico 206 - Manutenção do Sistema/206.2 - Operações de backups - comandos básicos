@@ -1,0 +1,31 @@
+206.2 - Operações de backups - comandos básicos 
+
+
+# Comando tar
+
+# Aglutinando os arquivos 
+
+tar -cvfp arquivo.tar /etc 
+
+# Gerando backup incremental 
+
+tar -g arquivo-incr1.tar /etc 
+
+# Excluindo um determinado diretório de um backup
+
+tar --exclude=/etc/grub/ 
+
+
+
+# Comando cpio 
+
+# Dispositivos de fitas 
+
+/dev/st0 Rebobina a fita após a operação
+/dev/nst0 não rebobina a fita após a operação
+
+
+# Comando mt (Magnetic tape) 
+
+mt /dev/st0 rewind 
+
