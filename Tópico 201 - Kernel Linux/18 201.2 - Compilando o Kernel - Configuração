@@ -2,14 +2,14 @@
 
 --> Pacotes utilizados para compilar o kernel 
 
-Package: build-essential, bison, flex, libncurses-dev
+# Dependências 
+
+build-essential, bison, flex, libncurses-dev
 
 --> make config (Baseado em perguntas)
 --> make menucofig (Baseado em Menus)
 --> make xconfig (Utiliza o servidor X instalando os pacotes pkg-config, g++, libqt4-dev)
 --> make gconfig (Utiliza o servidor X instalando os pacotes gtk+-2.0, gmodule-2.0, libglade2-dev, glib-2.0)
-
-
 
 # menuconfig 
 
@@ -37,12 +37,16 @@ configurações que ainda não forma respondidas.
 
 --> make xconfig (É necessário um servidor X)
 
+# Dependências 
+
   pkg-config 
   g++
   libqt4-dev 
   
  --> make gconfig
  
+# Dependências 
+
  gtk+-2.0 
  gmodule-2.0 
  libglade2-dev 
@@ -69,19 +73,22 @@ configurações que ainda não forma respondidas.
  
  --> Após o término da compilação é informado onde é salvo o arquivo
  
- arch/x86/boot/bzImage
+ 	arch/x86/boot/bzImage
  
  
 
 # COMPILANDO OS MÓDULOS 
 
-make -j2 modules 
+	make -j2 modules 
 
 # Comandos para limpar a compilação do kernel 
 
 
 --> make clean (Limpa tudo que foi compilado, tanto kernel como os módulos)
 --> make mrproper (Faz tudo que o clean e além disso limpa o arquivo .config)
+
+
+
 
 
 

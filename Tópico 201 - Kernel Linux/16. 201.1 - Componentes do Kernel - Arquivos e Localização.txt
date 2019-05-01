@@ -1,0 +1,49 @@
+# Fontes do Kernel 01/05/2019
+
+--> As fontes do kernel ficam em /usr/src, porém não é necessário ter essas fontes no sistema. 
+
+
+	/usr/src
+
+--> Headrs do Kernel, definição de variáveis que serão usadas, tipos de variáveis 
+
+# Baixando e instalando a última versão estável do kernel 
+
+--> O compactador de arquivos do kernel é utilizado o compactaodr .xz, para descompactar utiliza-se o comando abaixo.  
+
+	tar Jxvf linux-5.0.10.xz 
+
+--> Após a descompactação é recomendado a criação de um link simbolico para informar ao sistema onde está o código fonte que está sendo utilizado atualmente.
+
+	ln -s linux-5.0.10/ linux 
+
+--> Existe um diretório onde consta a documentação do código fonte kernel, porém não é o tradicional man.
+
+  /usr/src/linux/Documentation 
+
+--> A imagem do Kernel fica em /boot/vmlinuz-V-R-P-dis é a versão atual do kernel 
+
+-->  As imagens podem ser zImage (Até 512k) ou bZimage (Sem limite de tamanho) 
+
+--> A zImage era carregada na low memory (Memória baixa) Limite de tamanho de 512K 
+
+--> bZimage quer dizer Big zImage High Memory (Memória Alta) Não tem limite de tamanho.
+
+--> Ambos são compactados com o compactador gzip
+
+# MÓDULOS 
+
+--> Os módulos são localizados em /lib/modules/version-kernel/
+
+--> Os demais arquivos estão dentro do /lib/modules/version-kernel/kernel
+
+--> A extensão .ko significa que é um módulo 
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+ 

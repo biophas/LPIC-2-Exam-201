@@ -19,11 +19,11 @@ less /boot/grub/grub.cfg
 
 --> Debian
 
-makinitramfs -o /boot/initrd.img-4.19.6-bphs 4.19.6-bphs
+	makinitramfs -o /boot/initrd.img-4.19.6-bphs 4.19.6-bphs
 
 --> No red hat 
 
-mkinitrd -k 4.19.6-bphs /boot initrd 
+	mkinitrd -k 4.19.6-bphs /boot initrd 
 
 --> 
 

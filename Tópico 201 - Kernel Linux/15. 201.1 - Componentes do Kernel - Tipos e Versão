@@ -1,0 +1,50 @@
+# Tópico 201 - Kernel Linux
+Existem 2 tipos de kernel 
+
+kernel microkernel (Projeto GNU)
+Kernel monolítico modular ()
+
+mainline version-rc (Significa Realese candidate) 
+EOL - End off life 
+Longterm - São versões que ainda são mantidas 
+
+--------------------------------------------------------------
+Sobre versões 
+
+3.16.0-4-amd64 
+
+Primeiro campo: Versão 
+Segundo campo: Release 
+Terceiro campo: Patches
+
+As distribuições matém seu próprio kernel, são kernels customizados 
+
+3.16.0-4-amd64
+
+--------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
