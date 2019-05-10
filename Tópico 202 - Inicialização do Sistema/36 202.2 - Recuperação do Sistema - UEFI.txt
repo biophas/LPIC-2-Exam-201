@@ -1,0 +1,27 @@
+UEFI 
+
+
+- Unified Extensible Firmware Interface 
+- Especificação definida por um grupo de empresas 
+- Firmware que substitui a BIOS 
+
+Processo de boot / UEFI 
+
+1 - Lê a partição ESP carrega o bootloader (UEFI)
+2 -  Seleciona e executa o Kernel e o initrd (Bootloader, GRUB)
+3 - Executa o /sbin/init (Kernel)
+4 - Inicia os programas do runlevel/target definido (Init)
+
+UEFI - Características 
+
+- Não lê dados da MBR
+- Obtêm os bootloaders pelo ESP (EFI System Partition)
+	* Montada no diretório /boot/efi 
+	* Utiliza um filesystem do tipo FAT 
+- Utiliza (preferencialmente) partições GPT ao invés de MBR 
+	* Suporta partições além do limite de 2TB 
+- Implementa o boot seguro
+- Possui modo de compatibilidade com a BIOS
+- Configurado pelo UEFI Boot Manager
+	* No Linux através do comando: efibootmgr 
+

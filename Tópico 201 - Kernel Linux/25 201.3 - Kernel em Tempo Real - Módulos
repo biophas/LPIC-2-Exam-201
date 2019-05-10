@@ -29,7 +29,7 @@ total 4
 
 
 O diretório /etc/modprobe.d/ existe um arquivo de blacklist onde pode ser colocado o nome do módulo
-que não deve ser crregado.
+que não deve ser carregado.
 
 
 --> É importante a utilização da opção abaixo: 

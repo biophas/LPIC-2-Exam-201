@@ -26,14 +26,14 @@ Esc Esc = Volta
 [ ] Excluído
 < > Module capable 
 
---> Ao termnar a configuração e dado esc para sair, é salvo um arquivo .config do diretório do código fonte  
+--> Ao terminar a configuração e dado esc para sair, é salvo um arquivo .config do diretório do código fonte  
 
 -->  make oldconfig (Usado para restaurar uma configuração anterior)
 
---> Ele busca o arquivo .config exitente dentro de /usr/src/linux/.config e fazer as perguntas das
-configurações que ainda não forma respondidas. 
+--> Ele busca o arquivo .config exitente dentro de /usr/src/linux/.config e fará as perguntas das
+configurações que ainda não foram respondidas. 
 
---> O make menuconfig pode carrgar o arquivo através da opção load do menu 
+--> O make menuconfig pode carregar o arquivo através da opção load do menu 
 
 --> make xconfig (É necessário um servidor X)
 
@@ -60,32 +60,7 @@ configurações que ainda não forma respondidas.
  
  # LOCALVERSION fica no .config no campo CONFIG_LOCALVERSION="-BPHS"
  
- # COMPILAR E GERAR A IMAGEM 
  
- --> É recomendado ajustar a quantidade de processadores, questão de espaço em disco também deve ser revista
- make bzImage 
- 
- --> A uitlização da flag -j2 permite a utilização de dois processos em paralelo 
- 
- Package: libelf-dev, bc, *elfutils-libelf-dev, libesl-dev, libssl-dev 
- 
- 
- 
- --> Após o término da compilação é informado onde é salvo o arquivo
- 
- 	arch/x86/boot/bzImage
- 
- 
-
-# COMPILANDO OS MÓDULOS 
-
-	make -j2 modules 
-
-# Comandos para limpar a compilação do kernel 
-
-
---> make clean (Limpa tudo que foi compilado, tanto kernel como os módulos)
---> make mrproper (Faz tudo que o clean e além disso limpa o arquivo .config)
 
 
 

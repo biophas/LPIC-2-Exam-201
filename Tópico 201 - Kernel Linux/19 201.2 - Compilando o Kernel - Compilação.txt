@@ -1,0 +1,44 @@
+# Compilando o Kernel - compilação
+
+# COMPILAR E GERAR A IMAGEM 
+ 
+
+
+ 	make bzImage
+
+  --> Após o término da compilação é informado onde é salvo o arquivo
+ 
+ 	arch/x86/boot/bzImage
+
+
+
+ --> É recomendado ajustar a quantidade de processadores, questão de espaço em disco também deve ser revista para utilização do comando make bzImage.
+
+ 
+ --> A uitlização da flag -j2 permite a utilização de dois ou mais processos em paralelo. 
+ s
+ Package: libelf-dev, bc, elfutils, libesl-dev, libssl-dev 
+ 
+ --> Compilando a imagem, no qual será gerado uma imagem no diretório arch/x86/boot/bzImage
+
+ 
+ 
+ 
+
+# COMPILANDO OS MÓDULOS 
+
+	make -j2 modules 
+
+# Comandos para limpar a compilação do kernel 
+
+
+--> make clean (Limpa tudo que foi compilado, tanto o kernel como os módulos)
+
+--> make mrproper (Faz tudo que o clean faz e além disso limpa o arquivo .config.
+
+
+
+
+
+
+
