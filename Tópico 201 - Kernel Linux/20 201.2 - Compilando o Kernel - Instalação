@@ -25,7 +25,11 @@ less /boot/grub/grub.cfg
 
 	mkinitrd -k 4.19.6-bphs /boot initrd 
 
---> 
+--> Debian gera o arquivo initrd.img-4.9.0-9-amd64
+--> No CentOS gera o arquivo initramfs-5.0.10-1705-bphs.img
+
+
+
 
 
 

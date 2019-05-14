@@ -1,38 +1,85 @@
 201.2 - Compilando o Kernel - Pacotes, Limpeza, DMKS e Dracut
 
 
-
 --> make deb-pkg (Gera diversos pacotes nas distribuições debian)
+
+
+Gera diversos arquivos .deb em /usr/src, sendo mais importante o: 
+
+	linux-imagem-4.00.0000_4.00.0000-2_amd64.deb 
+
+É possível atualizar o kernel de uma estação utilizando este pacote com o comando:
+
+	dpkg -i linux-imagem-4.00.0000_4.00.0000-2_amd64.deb
+
+
 --> make rpm-pkg (Gera diversos pacotes nas distribuições red hat)
+
+
 --> make binrpm-pkg (Gera somente a imagem compilada) 
 
+--> DKMS (Dynamic Kernel Module Support) 
 
---> DKMS (Framework criado pela DELL, o mesmo não vem por padrão)
+Framework criado pela DELL, o mesmo não vem por padrão, o mesmo foi lançado para resolver problemas na hora de atualizar o kernel, ou seja toda vez que era lançado uma nova versão, era necessário recompilar os módulos externos manualmente. 
+
+
+Ex. Placas de vídeo
+
 
   apt-get install dkms 
 
 --> zfs-dkms é um sistema de arquivos 
 
---> É instalado dois pacotes: 
+--> É instalado dois pacotes, e os arquivos fontes são salvos no diretório /usr/src: 
 
-spl-version > dksm.conf (Configuração do módulo que será incorporado ao DKMS)
+zfs-version > dkms.conf (Configuração do módulo que será incorporado ao DKMS)
+
 zfs-version 
+
+OBS: Para compilar um módulo é preciso ter os headrs do kernel. 
+
 
 --> Após a instalação pode ser checado com o comando: 
 
 
+# Verificando status 
+
 dkms status 
+
+# Desinstalando um módulo com o dkms 
+
+dkms remove zfs/versão --all
+
+--all (remove o módulo de todos os kernels)
+
+# Adicionando novamente 
+
+dkms add zfs/versão --all
+
 
 --> Padrão Debian 
 
-update-initramfs -u 
+# Atualizando o arquivo initrd da instalação do Debian
+
+update-initramfs -u > Dracut no Red Hat 
 mkinitramfs 
+
 
 --> Padrão Red hat 
 
---> DRACUT é substituto do mkinitrd nas distribuições red hat (Ferrament de baixo nível para a geração de uma imagem initramfs)
+mkinitrd (Ele chama o Dracut)
 
-make clean vai limpar os arquivos compilados 
+
+--> DRACUT é substituto do mkinitrd nas distribuições red hat (Ferramenta de baixo nível para a geração de uma imagem initramfs)
+
+
+# Forçando a escrita para atualização do initramfs
+
+
+	dracut --force 
+
+make clean vai limpar os arquivos compilados (Módulos, bzImage)
+
 mrproper vai limpar além dos arquivos compilados será limpo o  arquivo .config 
 
 
