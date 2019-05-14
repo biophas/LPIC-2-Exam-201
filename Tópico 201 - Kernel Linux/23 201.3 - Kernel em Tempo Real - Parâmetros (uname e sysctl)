@@ -16,6 +16,19 @@ uname -a ou --all Imprime todas as informações, na ordem a seguir:
 # SYSCTL (Configura os parametros do kernel em tempo real)
 
 
+Obs. As informações em tempo real do Kernel ficam em /proc/sys/kernel 
+
+Consultando o arquivo fs.file-max que fica em /proc/sys/fs/
+
+
+cat /proc/sys/fs/file-max 
+sysctl fs.file-max (Consulta de qualquer diretório) 
+
+
+
+
+
+
 --> Existem duas formas de alterar o parâmetro de um kernel
 
 echo 10000 > /proc/sys/fs/file-max
@@ -24,7 +37,11 @@ Ou
 
 sysctl -w file-max=10000 (Passa o parâmentro direto sem o path) 
 
---> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc 
+--> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc ou /etc/sysctl.d/99-sysctl.conf com um link simbólico para ../sysctl.conf 
+
+ 
+
+
 
 
 # Material complementar 

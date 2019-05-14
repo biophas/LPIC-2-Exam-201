@@ -3,7 +3,6 @@
 
 --> make deb-pkg (Gera diversos pacotes nas distribuições debian)
 
-
 Gera diversos arquivos .deb em /usr/src, sendo mais importante o: 
 
 	linux-imagem-4.00.0000_4.00.0000-2_amd64.deb 
@@ -24,7 +23,6 @@ Framework criado pela DELL, o mesmo não vem por padrão, o mesmo foi lançado p
 
 
 Ex. Placas de vídeo
-
 
   apt-get install dkms 
 

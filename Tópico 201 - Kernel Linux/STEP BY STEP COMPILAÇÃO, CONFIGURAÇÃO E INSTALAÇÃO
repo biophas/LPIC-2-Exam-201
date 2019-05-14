@@ -68,6 +68,8 @@ make mrproper: Faz tudo que o make clean faz, porém ele apaga também o arquivo
 	make modules_install 
 
 
+Reiniciar o PC para dar boot pelo o novo kernel. 
+
 
 --> Maneira 2: Instalando o Kernel 
 	

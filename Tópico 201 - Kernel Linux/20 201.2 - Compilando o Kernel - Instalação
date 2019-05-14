@@ -2,7 +2,7 @@
 
 --> É pegar os arquivos compilados e colocar no diretório correto, /lib/modules 
 
-  make install modules 
+  make modules_install  
 
 --> Após a instalação são gerados os seguintes arquivos em /boot 
 

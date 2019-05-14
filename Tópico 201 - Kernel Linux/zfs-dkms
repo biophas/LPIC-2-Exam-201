@@ -1,0 +1,9 @@
+Congiguration repository for install zf´-dkms 
+
+https://github.com/zfsonlinux/zfs/wiki/Debian
+
+
+deb http://deb.debian.org/debian stretch-backports main contrib
+deb-src http://deb.debian.org/debian stretch-backports main contrib
+
+

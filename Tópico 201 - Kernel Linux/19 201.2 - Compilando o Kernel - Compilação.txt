@@ -29,6 +29,7 @@
 
 	make -j2 modules 
 
+	
 # Comandos para limpar a compilação do kernel 
 
 
