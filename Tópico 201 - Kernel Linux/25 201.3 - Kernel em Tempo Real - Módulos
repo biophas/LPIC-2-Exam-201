@@ -4,35 +4,82 @@
 
 --> Esses módulos funcionam como base para o funcionamento do comando modprobe
 
---> O comando depmode gera os arquivos dos módulos 
+--> O comando depmode gera o modules.dep e os maps files em /lib/modules/`uname -r`/modules.*.
 
--- > depmod (Generate modules.dep and map files) Os arquivos em /lib/modules/kernel-version são atualizados com o comando depmod 
 
-Ex. depmod -a (Atualiza todos os módulos) 
+Ex. depmod -a (Atualiza todos os módulos em /lib/modules/`uname -r`/)
 
---> Show the status of modules in the Linux
+
+--> Show the load status of modules in the Linux
 
 lsmod 
 
 --> modinfo (Show information about a Linux Kernel module)
 
+	modinfo psmouuse 
+
+Obs. É possível encontrar o caminho completo de onde o módulo está instalado. 
+
+# Mostrando somente as opções de paramentro 
+
+	modinfo -p psmouse 
+
+# O comando modinfo -p tem como paramentro o use_dac e o debug que pode ir de 0=none e 16=all ou seja o máximo de log possível. 
+
 --> insmod (Simple program to insert a module into th)
+
+# Mostra informação dos módulos quando passando o caminho completo de onde está guardado o módulo. 
+
+	insmod /lib/modules/kernel-version/kernel/drivers/net/ethernet/realtekC8169.ko 
+
+Obs. O insmod não pega informações do diretório /lib/modules/kernel-version/modules.*
 
 --> modprobe (Add and remove modules from the Linux Kernel)
 
---> Os arquivos de configurações dos modulos ficam em /etc/modules-load.d ou no arquivo /etc/modules
+# Ele utiliza os files maps do diretório /lib/modules/kernel-version/modules.*, ou seja verifica as dependências. 
 
--rw-r--r-- 1 root root  195 dez 20 22:52 modules
+# Descarregando um módulo
 
-modules-load.d:
-total 4
+	modprobe -r psmouse 
+
+# Carregando um módulo 
+
+	modprobe psmouse 
+
+# Definindo um nível de debug de um parametro que é mostrado com o modinfo -p 
+
+	modprobe psmouse debug=16
+	modprobe psmouse debug=0 
 
 
-O diretório /etc/modprobe.d/ existe um arquivo de blacklist onde pode ser colocado o nome do módulo
-que não deve ser carregado.
+-->> ARQUIVOS DE CONFIGURAÇÕES 
 
+# Pode cair na prova, porém não é mais usado.
+
+/etc/modules.conf 
+
+# O arquivo de configuração relacionado aos módulos 
+
+/etc/modprobe.d/ 
+
+blacklist.conf
+iwlwifi.conf 
+alsa-base.conf 
+
+# Pode ser configurado qualquer a arquivo para ser passado informações de parametro e ser salvo /etc/modprobe.d/, por exemplo: 
+
+	touch bphs.conf 
+# Inserir o parametro 
+
+	options psmouse debug=16 
+
+Obs. Podem ser configurados módulos para ser removidos ou instalados após o boot. 
+
+# No arquivo /etc/modules é inserido os módulos que devem ser carregados no boot da máquina. 
+
+/etc/modules and /etc/modules-load.d/ 
 
 --> É importante a utilização da opção abaixo: 
 
-option module-named index=2 
+options module-named index=2 
 

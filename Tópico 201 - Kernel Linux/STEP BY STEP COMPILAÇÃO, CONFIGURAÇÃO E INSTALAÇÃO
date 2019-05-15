@@ -91,6 +91,10 @@ Obs. update-initramfs pode ser usado para atualizar o arquivo initrd após a ins
 
 
 	
+777
+
+RWX
+421
 
 	
 
