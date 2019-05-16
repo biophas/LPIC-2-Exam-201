@@ -1,6 +1,19 @@
 # 201.3 - Kernel em Tempo Real - Udev
 
---> udev (Dinamic device management)
+--> udev (Dynamic device management)
+
+
+- Ele trabalha em conjunto com o systemd /usr/lib/systemd/systemd-udevd
+
+- Ele gerencia de forma online 
+
+- Ele recebe mensagens do kernel e em seguida toma ações 
+
+- É udev que gerencia os hotplugs e Couldplugs 
+
+- Ele tem a responsabilidade de criar as entradas no /dev/ e /sys 
+
+Ex. Adicionar um mouse, adicionar um drive no /dev 
 
 --> udevadm (udev management tool)
 
