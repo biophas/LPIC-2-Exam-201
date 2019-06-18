@@ -1,0 +1,8 @@
+32 202.1 - Customizando o Sistema de Inicialização SysV-init-LSB 
+
+
+Linux Standard Base 
+
+O debian não segue o padrão LSB, porém disponbiliza um pacote para essa adequação. 
+
+
