@@ -23,7 +23,7 @@ Ao terminar é necessário salvar o arquivo na opção save, o mesmo será salvo
 
 --> Compilando o kernel
 
-# Instalar as dependências: libelf-dev, bc, *elfutils-libelf-dev, libesl-dev, libssl-dev
+# Instalar as dependências: libelf-dev, bc, *elfutils-libelf-dev, *libesl-dev, libssl-dev
 
 Debian: libssl1.0-dev, libelf-dev, bc, elfutils, libesl-dev, libssl-dev
 CentOS: openssl-devel, bc, libelf-devel, elfutils-libelf-devel

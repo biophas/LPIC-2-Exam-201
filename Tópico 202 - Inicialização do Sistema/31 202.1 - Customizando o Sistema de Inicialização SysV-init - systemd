@@ -1,46 +1,97 @@
-# 202.1 - Customizando o Sistema de Inicialização SysV-init - systemd
+--> 202.1 - Customizando o Sistema de Inicialização SysV-init - systemd
 
-O systemd pode ser da seguinte forma: 
+# Tipos de units do systemd: 
 
 .service
+.service.d
 .socket
 .target 
 .patch 
+.mount 
+.wants
 
-# O diretório principal do systemd 
+--> Diretórios  
 
-/lib/systemd/system (Terciário)
-/etc/systemd/system (Preferencial) 
-/run/systemd/system (Secundário)
+# DIRECTORY HIGHEST PRIORITY
 
-# Comando systemd-delta é [Find overridden configuration files]
+/etc/systemd/system
 
-systemd-delta
+# SECOND HIGHEST PRIORITY (Configurações temporárias) 
 
-# Comando systemctl [Control the systemd system and service manager] 
+/run/systemd/system 
 
-systemctl 
+# LOWEST PRIORITY 
 
-# Listando todas as units com o systemd 
+/lib/systemd/system (A units pegam deste diretório, porém os dois anteriores tem prioridade sobre ele)
 
-systemctl list-units 
 
-# Alterando o target 
 
-systemctl isolate multi-user-target 
 
-# Configurando novamente o target 
+~~ A unit default.target chama a o target principal (graphical.target)
 
-systemctl default 
+
+/lib/systemd/system/default.target 
+
+~~ O systemd mantém uma compatibilidade com o SysV init, com as seguintes units:
+
+
+XXXXXXXXXXXXXXX--XXXXXXXXXXXXXXXXXX
+
+runlevel0.target -> poweroff.target
+runlevel1.target -> rescue.target
+runlevel2.target -> multi-user.target
+runlevel3.target -> multi-user.target
+runlevel4.target -> multi-user.target
+runlevel5.target -> graphical.target
+runlevel6.target -> reboot.target
+
+XXXXXXXXXXXXXXX--XXXXXXXXXXXXXXXXXX
+
+--> systemd-delta - Find overridden configuration files
+
+	systemd-delta
+
+-----------------------------------------------------------------
+
+~~ Pode ser que exista alguma configuração no diretório /etc/systemd/user 
+
+
+--> systemctl - Control the systemd system and service manager 
+
+# List Units 
+
+	systemctl our systemctl list-units
+
+# Change target 
+
+	systemctl isolate multi-user.target 
+
+#  Change again target 
+
+	systemctl default 
 
 # Verificando o status do serviço também pode ser verificado se o script está sendo inicializado no boot da máquina
 verificando o status enable ou disable.  
 
-systemctl status sshd.service 
+	systemctl status sshd.service
+
+~~ No campo loaded é possível identificar o diretório de onde está sendo carregado a unit, bem como saber se o serviço está configurado no boot da máquina. 
+
+# Disable unit/service on boot 
+
+	systemctl disable sshd.service  
+
+# Enable unit/service on boot 
+
+	systemctl enable sshd.service 
 
 # Iniciar, restart e stop 
 
-systemd start, restart, stop sshd.service 
+	systemd start and restart and stop sshd.service 
+
+# Restart configuration on systemd 
+
+	systemctl daemon-reload 
 
 
 

@@ -3,63 +3,93 @@
 
 uname -a ou --all Imprime todas as informações, na ordem a seguir: 
 
--s ou --kernel-name Imprime o nome do kernel do sistema operacional 
--n --nodename Imprime o nome do nó da máquina de rede
--r --kernel-release Imprime a versão de liberação do kernel 
--v --kernel-version Imprime a data em que o kernel foi crido 
--m --machine Imprime o nome do hardware da máquina (arquitetura)
--p --processor Imprime o tipo de processaodr 
--i --hardware-platform Imprime a plataforma de hardware
--o --operiting-system Imprime o sistema operacional 
 
+# Imprime o nome do kernel
+-s ou --kernel-name  
+
+# Imprime o nome do nó da máquina de rede
+-n --nodename 
+
+# Imprime a versão de liberação do kernel
+-r --kernel-release  
+
+# Imprime a versão(data) da compilação do kernel
+-v --kernel-version  
+
+# Imprime o nome do hardware da máquina (arquitetura)
+-m --machine
+
+# Imprime o tipo de processaodr
+
+-i --hardware-platform   
+
+# Imprime o nome do processaodr
+
+-p --platform
+
+# Imprime o sistema operacional
+
+-o --operiting-system  
+
+OBS: Essas informações são pegas em /proc/sys/kernel a partição virtual do sistema
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 # SYSCTL (Configura os parametros do kernel em tempo real)
 
 
-Obs. As informações em tempo real do Kernel ficam em /proc/sys/kernel 
+Tips. As informações em tempo real do Kernel ficam em /proc/sys/kernel 
 
-Consultando o arquivo fs.file-max que fica em /proc/sys/fs/
-
-
-cat /proc/sys/fs/file-max 
-sysctl fs.file-max (Consulta de qualquer diretório) 
+# Consultando o arquivo fs.file-max que fica em /proc/sys/fs/
 
 
+~~ Consult one
 
+	cat /proc/sys/fs/file-max 
 
+~~ Consult two (O sysctl parte do /proc/sys/ como diretório inicial)
 
+	sysctl fs.file-max  
 
 --> Existem duas formas de alterar o parâmetro de um kernel
 
-echo 10000 > /proc/sys/fs/file-max
 
-Ou 
+# Enviando valores através do comando echo para o parâmetro file-max
 
-sysctl -w file-max=10000 (Passa o parâmentro direto sem o path) 
+	echo 10000 > /proc/sys/fs/file-max
 
---> Obs. As alterações são commitadas apenas após a configuração do arquivo sysctl.conf localizado em /etc ou /etc/sysctl.d/99-sysctl.conf com um link simbólico para ../sysctl.conf 
+# Passando o parâmetro direto sem o path
 
- 
+	sysctl -w fs.file-max=100000 
 
+TIPS: As alterações são commitadas apenas após a configuração do arquivo localizado em:
 
+/etc/sysctl.conf 
 
+# Link simbólico para o ../sysctl.conf 
 
-# Material complementar 
+	/etc/sysctl.d/99-sysctl.conf 
 
+--> Material complementar 
 
---> Para listar os atuais parâmetros de seu kernel digite:
+# Para listar os atuais parâmetros de seu kernel digite:
 
-systecl -a 
+	systecl -a 
 
---> Para alterar temporariamente um parâmetro, utilize o parâmetro -w do sysctl, 
-indicando a variável que deseja alterar e o novo valor que será utilizado para a mesma.
+# Alterando temporariamente um parâmetro, 
 
-systecl -w {nome-variável=valor}
+	sysctl -w {nome-variável=valor}
 
---> Caso deseje realizar alterações permanentes, edite o arquivo /etc/sysctl.conf e em seguida aplique suas modificações
-com o parâmetro -p do sysctl.
+	sysctl -w fs.file-max=100000
 
-systctl -p 
+# Editando o arquivo sysctl.conf e manter as alterações após um boot
+
+	echo fs.file-max=100000 > /etc/syctl.conf && sysctl -p 
+
+# Read values from file  
+
+	sysctl -p 
 
 
 

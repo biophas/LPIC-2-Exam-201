@@ -2,35 +2,60 @@
 
 -- > O diretório padrão dos módulos do kernel é /lib/modules/`uname -r`
 
+# Módulos do kernel 
+
+/lib/modules/versão-kernel/kernel
+
+
 --> Esses módulos funcionam como base para o funcionamento do comando modprobe
+
+/lib/modules/version-kernel/modules.* 
+
 
 --> O comando depmode gera o modules.dep e os maps files em /lib/modules/`uname -r`/modules.*.
 
+Que são eles: 
 
-Ex. depmod -a (Atualiza todos os módulos em /lib/modules/`uname -r`/)
+modules.order
+modules.builtin
+modules.dep (Dependências)
+modules.dep.bin
+modules.alias (Mostra que módulos será invocado por um determinado hardware)
+modules.alias.bin
+modules.softdep
+modules.symbols
+modules.symbols.bin
+modules.builtin.bin
+modules.devname
+
+Ex. depmod -a (Atualiza todos os módulos em /lib/modules/`uname -r`/*)
 
 
---> Show the load status of modules in the Linux
+# Atualiza todos os módulos do kernel atual 
 
-lsmod 
+	depmod -a
+
+Tips: Na instalação do kernel ao executar o comando make modules_install ao final da operação ele realiza um depmod -a para atualizar as referências dos módulos. 
+
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+--> lsmod: Show the load status of modules in the Linux
 
 --> modinfo (Show information about a Linux Kernel module)
 
 	modinfo psmouuse 
 
-Obs. É possível encontrar o caminho completo de onde o módulo está instalado. 
+# Mostrando somente as opções de PARAMETROS  
 
-# Mostrando somente as opções de paramentro 
-
-	modinfo -p psmouse 
-
-# O comando modinfo -p tem como paramentro o use_dac e o debug que pode ir de 0=none e 16=all ou seja o máximo de log possível. 
+	modinfo -p psmouse
+	-p Print only 'parm' (use_dac and debug, 0=none and 16=all)
 
 --> insmod (Simple program to insert a module into th)
 
-# Mostra informação dos módulos quando passando o caminho completo de onde está guardado o módulo. 
+# Sobre o módulo quando passando o caminho completo. 
 
-	insmod /lib/modules/kernel-version/kernel/drivers/net/ethernet/realtekC8169.ko 
+	insmod /lib/modules/kernel-version/kernel/drivers/net/ethernet/realtek/C8169.ko 
 
 Obs. O insmod não pega informações do diretório /lib/modules/kernel-version/modules.*
 
@@ -54,30 +79,22 @@ Obs. O insmod não pega informações do diretório /lib/modules/kernel-version/
 
 -->> ARQUIVOS DE CONFIGURAÇÕES 
 
-# Pode cair na prova, porém não é mais usado.
 
-/etc/modules.conf 
+
+
+# Módulos a ser carregados no boot
+ 
+	/etc/modprobe.d/* 
+
+/etc/modules e /etc/modules-load.d > 
 
 # O arquivo de configuração relacionado aos módulos 
 
-/etc/modprobe.d/ 
+	/etc/modprobe.d/*  
+		blacklist.conf
+		iwlwifi.conf 
+		alsa-base.conf 
 
-blacklist.conf
-iwlwifi.conf 
-alsa-base.conf 
-
-# Pode ser configurado qualquer a arquivo para ser passado informações de parametro e ser salvo /etc/modprobe.d/, por exemplo: 
-
-	touch bphs.conf 
-# Inserir o parametro 
-
-	options psmouse debug=16 
-
-Obs. Podem ser configurados módulos para ser removidos ou instalados após o boot. 
-
-# No arquivo /etc/modules é inserido os módulos que devem ser carregados no boot da máquina. 
-
-/etc/modules and /etc/modules-load.d/ 
 
 --> É importante a utilização da opção abaixo: 
 

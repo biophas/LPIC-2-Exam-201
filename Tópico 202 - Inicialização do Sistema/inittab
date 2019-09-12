@@ -1,0 +1,45 @@
+
+###### indica o nível de execução padrão que o sistema irá usar ######
+id:5:initdefault:
+
+#### indica o primeiro runlevel executado durante o boot ###
+# This is run first except when booting in emergency (-b) 
+si::sysinit:/etc/init.d/rcS
+
+#### Runlevel executado em modo mono usuário ####
+~~:S:wait:/sbin/sulogin
+
+#### Localização de cada dos serviços e scripts a serem iniciados para cada nível de execução ####
+
+l0:0:wait:/etc/init.d/rc 0
+l1:1:wait:/etc/init.d/rc 1
+l2:2:wait:/etc/init.d/rc 2
+l3:3:wait:/etc/init.d/rc 3
+l4:4:wait:/etc/init.d/rc 4
+l5:5:wait:/etc/init.d/rc 5
+l6:6:wait:/etc/init.d/rc 6
+
+# Normally not reached, but fallthrough in case of emergency.
+z6:6:respawn:/sbin/sulogin
+
+##### Reinicia a máquina pressionando CONTROL + ALT + DEL ####
+ca:12345:ctrlaltdel:/sbin/shutdown -t1 -a -r now
+
+# Action on special keypress (ALT-UpArrow).
+#kb::kbrequest:/bin/echo "Keyboard Request--edit /etc/inittab to let this work."
+
+# What to do when the power fails/returns.
+pf::powerwait:/etc/init.d/powerfail start
+pn::powerfailnow:/etc/init.d/powerfail now
+po::powerokwait:/etc/init.d/powerfail stop
+
+#### Terminais virtuais disponiveis para os runlevels em execução ###
+# so if you want to add more getty's go ahead but skip tty7 if you run X.
+#
+1:2345:respawn:/sbin/getty 38400 tty1
+2:235:respawn:/sbin/getty 38400 tty2
+#3:23:respawn:/sbin/getty 38400 tty3
+#4:23:respawn:/sbin/getty 38400 tty4
+#5:23:respawn:/sbin/getty 38400 tty5
+#6:23:respawn:/sbin/getty 38400 tty6
+7:12:respawn:/sbin/getty 38400 tty10

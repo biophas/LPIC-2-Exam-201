@@ -1,6 +1,6 @@
 # 202.2 - Recuperação do Sistema - Boot e GRUB
 
-# Master boot Record
+# Master boot Record (First 512 bytes)
 
 --> Localizado nos primeiros 512 bytes do disco bootável 
 --> Contém informações sobre o grub
@@ -10,32 +10,53 @@
 
 # BIOS(Power On Self Test) > MBR (Mater boot recorder) > BOOT Loader (Grub) > Kernel > Init 
 
-BIOS: Executa o Post On Self Test e locaiza e executa o que está na mbr 
-MBR: Master Boot Record e contém o bootloader 
-BOOT Loader(grub): Seleciona e executa o kernel e o initrd 
-Kernel: Executa o /sbin/init 
+BIOS: Executa o Power On Self Test e locaiza e executa o que está na mbr 
+
+MBR: Master Boot Record e contém o bootloader (Grub)
+
+BOOT Loader(grub): Seleciona e executa o kernel e o initrd (Carregador de inicialização)
+
+KERNEL: Executa o /sbin/init 
 Init: Inicia os programas do runlevel/target definido
 
 
-# GRUB 2 características 
+# GRUB 2 (Grand Unified Bootloader) características 
 
 - Bootloader modular 
 - Suporte bios e UEFI
 - Suporte a scripts 
-- Suporte a multiplas plataformas incluíndoa x86 
+- Suporte a multiplas plataformas incluíndo a x86 
 - Suporte UUIDs 
 
-# Diretório pardão do grub  
+# Diferença entre Grub e Grub2   
 
-vim /etc/default/grub 
+GRUB2
+
+	/boot/grub/grub.cfg   
+	/etc/default/grub
+	/etc/grub.d/  
+
+	Discos: hda1 = hda1, hda1 
+	Comandos: grub-install /dev/sda
+			  upate-grub 
+			  grub-mkconfig -o /boot/grub/grub.cfg 
+
+GRUB LEGACY 
+
+	/boot/grub/menu.lst 
+	Discos: hda0, hda5
+	Comandos: grub-install /dev/sda
+
 
 # Diretório pardão do arquivo grub.cfg
-/boot/grub/grub.cfg 
+
+	/boot/grub/grub.cfg 
 
 # O gpt5 não tem a limitação de 4 partições primarias e suporta partições de mais de 2TBs.
 
 # Diretório que possui arquivos de configurações, detalhes do sistema
-/etc/grub.d/
+
+	/etc/grub.d/
 
 # Quando é mostrado uma partição com msdos1 significa que a partição utiliza mbr. 
 
@@ -51,7 +72,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 # O comando grup-install instala o grub para um dispositivo 
 
-grup-install <device>
+grub-install <device>
 
 # Principais parâmetros do grub 
 
@@ -63,7 +84,9 @@ grup-install <device>
 
 --> set root='hd0,msdos1' parametro que mostra onde o /boot é montado. 
 
-# Modo de recuperação 
+--> Modo de recuperação 
+
+# Digite e para entrar no mode de edição do Grub 
 
 Editar a linha /vmlinuz-a-b-c root=UUID0000000000 ro quiet e colocar no final o runlevel que deseja iniciar. 
 
@@ -71,26 +94,42 @@ Editar a linha /vmlinuz-a-b-c root=UUID0000000000 ro quiet e colocar no final o 
 
 /vmlinuz-a-b-c root=UUID0000000000 ro quiet 1 
 
-No modo single, você pode desmontar as partições e realizar o fsck, ao tentar desmontar a partição /var tive problemas
-na hora de realizar o fsck com o erro e2fsck cannot continue aborting, consegui corrigir rodando o comanado: 
+No modo single, você pode desmontar as partições e realizar o fsck
 
-fsck -nf /var 
+OBS. Ao tentar desmontar a partição /var tive problemas
+na hora de realizar o fsck com o erro e2fsck cannot continue aborting.
 
-Posso utilizar o comando dmesg 
+Correção: fsck -nf /var 
+
+No modo 1 ou single pode ser utilizado o comando dmesg para analise de mensagens
 
 # Outra forma de recuperação é utilizando o init=/bin/bash o kernel chama o bash ao invés do modo single. 
 
 --> O mesmo já abre o terminal direto, ao consultar quem é o pai de todos os processos é verificado que o init 1 é o /bin/bash 
 
---> Não é montado as partições, somente a partição do / é montada com o status de read only 
---> Desta forma é possível realizar um fsck no / 
---> O arquivo fstab fica com read only 
---> Porém é possível realizar o procedimento abaixo para a partição / volte a ficar read/write
---> Para alterar a senha de root a partição / tem que está como read write 
+- Não é montado as partições,
+- O / é montado como ready only 
+- É possível realizar um fsck no / 
+- O arquivo fstab fica com read only 
+ 
 
-mount -o remount,rw /
+# Realizando throubleshoot na partição
 
---> Desta forma consigo editar o arquivo fstab novamente. 
+Com a partição / como Ready Only é possível realizar o fsck na partição /
+
+	fsck /dev/sda1 
+
+# Aletrando de ro para rw 
+
+	mount -o remount,rw /
+
+# Para alterar a senha de root a partição / tem que está como read write 
+
+# Desta forma é possível editar o arquivo /etc/fstab e redefinir a senha de root
+
+
+
+
 
 
 

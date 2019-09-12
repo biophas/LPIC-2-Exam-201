@@ -16,15 +16,10 @@
 
  
  --> A uitlização da flag -j2 permite a utilização de dois ou mais processos em paralelo. 
- s
+ 
  Package: libelf-dev, bc, elfutils, libesl-dev, libssl-dev 
  
- --> Compilando a imagem, no qual será gerado uma imagem no diretório arch/x86/boot/bzImage
-
  
- 
- 
-
 # COMPILANDO OS MÓDULOS 
 
 	make -j2 modules 

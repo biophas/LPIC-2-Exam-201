@@ -4,7 +4,7 @@
 
 # Dependências 
 
-build-essential, bison, flex, libncurses-dev
+build-essential bison flex libncurses5-dev
 
 --> make config (Baseado em perguntas)
 --> make menucofig (Baseado em Menus)
@@ -25,6 +25,14 @@ Esc Esc = Volta
 [*] Built-in (Integrado ao kernel)
 [ ] Excluído
 < > Module capable 
+
+
+Dependências: 
+
+libelf-dev bc libssl-dev
+*elfutils-libelf-dev *libesl-dev
+
+
 
 --> Ao terminar a configuração e dado esc para sair, é salvo um arquivo .config do diretório do código fonte  
 

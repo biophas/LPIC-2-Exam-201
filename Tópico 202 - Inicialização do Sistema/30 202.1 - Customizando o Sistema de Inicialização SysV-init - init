@@ -1,43 +1,96 @@
+TÓPICO 202.1 
+
+202.1 Customizing SysV-init system startup
+202.2 System Recovery
+202.3 Alternate Bootloaders
+
+
 # 202.1 - Customizando o Sistema de Inicialização SysV-init - init
 
-SysV-init - init 
 
-Seu arquivo principal é o /etc/inittab 
+# O arquivo principal do SysV-init é /etc/inittab 
 
-Existem o total de 7 níveis de runlevel 
+id:2:initdefault:
+
+# Existem o total de 7 níveis de runlevel 
 
 rc0.d -> Halt 
 rc1.d -> Single User
 rc2.d -> Multiuser, without NFS (The same as 3, if you do not have networking)
 rc3.d -> Multiuser Full mode
 rc4.d -> Unused 
-rc5.d -> X11 
+rc5.d -> X11 (Interface gráfica)
 rc6.d -> reboot (Do NOT set initdefault to this)
 
-No Debian utiliza-se o comando update-rc.d para gerenciar as configurações de scripts nos boot do sistema 
+--> update-rc.d 
 
-Ex. update-rc.d collectd disable 5 (runlevel)
-update-rc.d collect enable 5 (Habilita o script no runlevel 5)
-update-rc.d collect remove (Remove o script da inicilização do sistema, ou seja de todos os runlevels)
-update-rc.d collect defaults (Configura o scripts nos runlevels no qual está configurado como padrão)
+# No Debian utiliza-se o comando update-rc.d para gerenciar as configurações de scripts nos boot do sistema. 
 
-No Red hat utiliza-se o comando chkconfig 
 
-Utilizando apenas chkconfig lista todos os processo e configurações dos seus respectivos runvels
+# Desabilitando o collectd no runlvel 5 
 
-# Lista todos os processos
-chkconfig --list 
+	update-rc.d collectd disable 5
+
+# Listando todos os diretórios dos runlevels 
+
+	ls -ld /etc/rc*.d 
+
+# Listando em quais runleves o serviço ssh está habilitado
+
+	ls -l /etc/rc*.d/*ssh* 
+
+# Desabilitando o ssh no runlevel 5 
+
+	update-rc.d ssh disable 5 
+
+# Habilita o script no runlevel 5
+
+	update-rc.d ssh enable 5
+
+# Remove o script da inicilização do sistema, ou seja de todos os runlevels
+
+	update-rc.d ssh remove 
+
+# Configura o scripts nos runlevels no qual está configurado como padrão
+
+update-rc.d collect defaults
+
+~~ O parâmetro defaults pega as informações do início dos script em seus respectivos diretórios de inicialização. 
+
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		sshd
+# Required-Start:	$remote_fs $syslog
+# Required-Stop:	$remote_fs $syslog
+# Default-Start:	2 3 4 5
+# Default-Stop:		
+# Short-Description:	OpenBSD Secure Shell server
+### END INIT INFO
+
+--> chkconfig 
+
+# Listando todos os processos 
+
+	chkconfig
+
+# Listar um processo específico
+
+	chkconfig --list ssh
 
 # Alterando as configurações no runlevel
-chkconfig --level 45 network off 
-chkconfig --add 4 network 
-chkconfig --del 5 network 
+	
+	chkconfig --level 45 network off 
+	chkconfig --level 45 network on
+	chkconfig --del 5 network 
+	chkconfig --add 4 network
 
-# Comando telinit e init, tem como principal função alterar o nível de execução do sistema 
+# Comando telinit e init, tem como principal função ALTERAR o nível de execução do sistema. 
 
-telinit 5 
-ou 
-init 5 
+	telinit 5 
+	init 5 
+Obs. Eles executam os scripts que pertecem aquele nível escolhido.
+
 
 # O comando runlevel exibe o número utilizado atualmente 
 

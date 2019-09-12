@@ -29,10 +29,41 @@ ls (hd0,msdos5)/
 set root=(hd0,msdos5)
 linux /vmlinuz-a-b-c 
 
---> É necessário também saber onde está a / raiz e a partição de /boot 
+--> É necessário também saber onde está a / raiz e a partição de /boot, para isso utilize o tune2fs para atribuir label as partições 
 
-set root=(hd0,msdos1)
-linux /vmlinuz-a-b-c root=/dev/sda2 
-initrd /initrd-a-b-c 
+tune2fs -L BOOT /dev/sda1 
+
+--L Configuração necessário para um boot manual
+
+# Identificando as partições 
+
+ls
+
+# Listando as informações de uma partição (ex. label, filesystem etc)
+
+ls (hd0,msdos1)
+
+# Listando o conteúdo da partição 
+
+ls (hd0,msdos1)/ 
+
+--L Realizando boot manual 
+
+# Entrando na partição de boot 
+
+set root=(hd0,msdos1) 
+
+# Informando onde deve carregado a imagem do kernel, e onde vai ser montando a partição raiz. 
+
+linux /vmlinuz-4.9.0-9-amd64 root=/dev/sda2 
+
+# Informando onde o arquivo de imagem initrd 
+
+initrd /initrd.img-4.9.0-9-amd64
+
+# Realizando o boot 
+
+boot 
+
 
 

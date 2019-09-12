@@ -1,0 +1,137 @@
+Atualização do kernel estação de tabalho DebLAB 
+
+Instalando dependências para o menus de configurações do arquivo .config 
+
+
+build-essential, bison, flex, libncurses-dev
+
+Compilando a imagem
+
+make bzImage 
+
+09:30 21/06/2019
+
+
+Resposta Ricardo Prudenciato
+
+
+Tente bootar com um outro kernel, ou use uma imagem live para fazer o boot, e veja as informações dos seguintes comandos:
+
+$ cat /proc/cmdline
+
+$ cat /proc/modules
+
+# ls /dev
+
+
+Outra coisa pode ser relacionado à configuração no /etc/default/grub, tente essas configurações
+
+/etc/default/grub
+
+    GRUB_CMDLINE_LINUX=" rootdelay=3 "
+    GRUB_DISABLE_LINUX_UUID=true
+
+E use o update-grub novamente.
+
+
+
+Boot Kernel antigo
+
+cat /proc/cmdline
+BOOT_IMAGE=/vmlinuz-4.9.0-9-amd64 root=UUID=122edd4f-7ffe-4476-8e1b-092ba46bcaf1 ro quiet
+
+------------------------------------------------------------------------------------------
+cat /proc/modules
+joydev 20480 0 - Live 0xffffffffc077a000
+crct10dif_pclmul 16384 0 - Live 0xffffffffc0798000
+crc32_pclmul 16384 0 - Live 0xffffffffc06da000
+snd_intel8x0 40960 2 - Live 0xffffffffc0788000
+vmwgfx 237568 2 - Live 0xffffffffc073f000
+snd_ac97_codec 126976 1 snd_intel8x0, Live 0xffffffffc071f000
+ghash_clmulni_intel 16384 0 - Live 0xffffffffc0678000
+ac97_bus 16384 1 snd_ac97_codec, Live 0xffffffffc0682000
+snd_pcm 110592 2 snd_intel8x0,snd_ac97_codec, Live 0xffffffffc0703000
+ttm 98304 1 vmwgfx, Live 0xffffffffc06df000
+intel_rapl_perf 16384 0 - Live 0xffffffffc066d000
+snd_timer 32768 1 snd_pcm, Live 0xffffffffc06b2000
+evdev 24576 9 - Live 0xffffffffc0666000
+snd 86016 8 snd_intel8x0,snd_ac97_codec,snd_pcm,snd_timer, Live 0xffffffffc06c4000
+soundcore 16384 1 snd, Live 0xffffffffc0658000
+drm_kms_helper 155648 1 vmwgfx, Live 0xffffffffc068b000
+sg 32768 0 - Live 0xffffffffc065d000
+serio_raw 16384 0 - Live 0xffffffffc0653000
+pcspkr 16384 0 - Live 0xffffffffc0673000
+ac 16384 0 - Live 0xffffffffc067d000
+battery 20480 0 - Live 0xffffffffc05e7000
+drm 360448 5 vmwgfx,ttm,drm_kms_helper, Live 0xffffffffc05fa000
+video 40960 0 - Live 0xffffffffc05ed000
+button 16384 0 - Live 0xffffffffc05e2000
+parport_pc 28672 0 - Live 0xffffffffc05da000
+ppdev 20480 0 - Live 0xffffffffc05d0000
+lp 20480 0 - Live 0xffffffffc0475000
+parport 49152 3 parport_pc,ppdev,lp, Live 0xffffffffc0529000
+ip_tables 24576 0 - Live 0xffffffffc0480000
+x_tables 36864 1 ip_tables, Live 0xffffffffc051f000
+autofs4 40960 2 - Live 0xffffffffc0514000
+ext4 589824 3 - Live 0xffffffffc053f000
+crc16 16384 1 ext4, Live 0xffffffffc046b000
+jbd2 106496 1 ext4, Live 0xffffffffc04f9000
+crc32c_generic 16384 0 - Live 0xffffffffc0470000
+fscrypto 28672 1 ext4, Live 0xffffffffc04d0000
+hid_generic 16384 0 - Live 0xffffffffc03da000
+ecb 16384 0 - Live 0xffffffffc03c7000
+usbhid 53248 0 - Live 0xffffffffc04eb000
+mbcache 16384 4 ext4, Live 0xffffffffc03c2000
+hid 122880 2 hid_generic,usbhid, Live 0xffffffffc042a000
+sr_mod 24576 0 - Live 0xffffffffc03e7000
+cdrom 61440 1 sr_mod, Live 0xffffffffc041a000
+sd_mod 49152 5 - Live 0xffffffffc03b5000
+ata_generic 16384 0 - Live 0xffffffffc032b000
+ohci_pci 16384 0 - Live 0xffffffffc02e5000
+crc32c_intel 24576 6 - Live 0xffffffffc03ae000
+ahci 40960 4 - Live 0xffffffffc04c5000
+ata_piix 36864 0 - Live 0xffffffffc04e1000
+libahci 32768 1 ahci, Live 0xffffffffc0536000
+aesni_intel 167936 1 - Live 0xffffffffc03f0000
+ehci_pci 16384 0 - Live 0xffffffffc0326000
+ohci_hcd 53248 1 ohci_pci, Live 0xffffffffc03cc000
+aes_x86_64 20480 1 aesni_intel, Live 0xffffffffc03e1000
+glue_helper 16384 1 aesni_intel, Live 0xffffffffc03a9000
+lrw 16384 1 aesni_intel, Live 0xffffffffc0333000
+ehci_hcd 81920 1 ehci_pci, Live 0xffffffffc0394000
+gf128mul 16384 1 lrw, Live 0xffffffffc047b000
+ablk_helper 16384 1 aesni_intel, Live 0xffffffffc04dc000
+libata 249856 4 ata_generic,ahci,ata_piix,libahci, Live 0xffffffffc0487000
+cryptd 24576 3 ghash_clmulni_intel,aesni_intel,ablk_helper, Live 0xffffffffc034a000
+psmouse 135168 0 - Live 0xffffffffc0449000
+usbcore 253952 5 usbhid,ohci_pci,ehci_pci,ohci_hcd,ehci_hcd, Live 0xffffffffc0355000
+usb_common 16384 1 usbcore, Live 0xffffffffc0345000
+i2c_piix4 24576 0 - Live 0xffffffffc033a000
+scsi_mod 225280 4 sg,sr_mod,sd_mod,libata, Live 0xffffffffc02ee000
+e1000 143360 0 - Live 0xffffffffc02c1000
+
+
+ls /dev/
+
+autofs           cuse     hugepages         mqueue              random  sg1       tty1   tty19  tty28  tty37  tty46  tty55  tty7     vcs    vcsa3
+block            disk     initctl           net                 rtc     shm       tty10  tty2   tty29  tty38  tty47  tty56  tty8     vcs1   vcsa4
+bsg              dri      input             network_latency     rtc0    snapshot  tty11  tty20  tty3   tty39  tty48  tty57  tty9     vcs2   vcsa5
+btrfs-control    dvd      kmsg              network_throughput  sda     snd       tty12  tty21  tty30  tty4   tty49  tty58  ttyS0    vcs3   vcsa6
+bus              fb0      log               null                sda1    sr0       tty13  tty22  tty31  tty40  tty5   tty59  ttyS1    vcs4   vfio
+cdrom            fd       loop-control      port                sda2    stderr    tty14  tty23  tty32  tty41  tty50  tty6   ttyS2    vcs5   vga_arbiter
+char             full     mapper            ppp                 sda3    stdin     tty15  tty24  tty33  tty42  tty51  tty60  ttyS3    vcs6   vhci
+console          fuse     mcelog            psaux               sda4    stdout    tty16  tty25  tty34  tty43  tty52  tty61  uhid     vcsa   vhost-net
+core             hidraw0  mem               ptmx                sda5    tty       tty17  tty26  tty35  tty44  tty53  tty62  uinput   vcsa1  zero
+cpu_dma_latency  hpet     memory_bandwidth  pts                 sg0     tty0      tty18  tty27  tty36  tty45  tty54  tty63  urandom  vcsa2
+
+
+
+Blindando o foco
+
+Bloquei as distrações
+Antecipe as interrupções 
+Não coloque muito tempo para fazer uma atividade 
+
+
+
+

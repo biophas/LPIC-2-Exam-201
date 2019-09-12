@@ -1,5 +1,6 @@
-UEFI 
+UEFI - É uma especificação definidas por diversas empresas (MS, Intel, IBM) para subistituir a BIOS
 
+UEFI - É um novo firmware, ele não é uma versão nova da BIOS 
 
 - Unified Extensible Firmware Interface 
 - Especificação definida por um grupo de empresas 
@@ -17,11 +18,11 @@ UEFI - Características
 - Não lê dados da MBR
 - Obtêm os bootloaders pelo ESP (EFI System Partition)
 	* Montada no diretório /boot/efi 
-	* Utiliza um filesystem do tipo FAT 
+	* Utiliza um filesystem do tipo VFAT 
 - Utiliza (preferencialmente) partições GPT ao invés de MBR 
 	* Suporta partições além do limite de 2TB 
-- Implementa o boot seguro
-- Possui modo de compatibilidade com a BIOS
+- Implementa o boot seguro (Boot através de imagens assinadas)
+- Possui modo de compatibilidade com a BIOS/mbr
 - Configurado pelo UEFI Boot Manager
 	* No Linux através do comando: efibootmgr 
 
