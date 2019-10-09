@@ -1,0 +1,129 @@
+Recuperando uma imagem corrompida 
+
+
+# Verificando quantas linhas tem o arquivo de imagem vmlinuz
+
+	wc -l vmlinuz-4-9-0.amd64
+
+# Fazer um backup da imagem do kernel 
+
+	cp vmlinuz-4-9-0.amd64 ~biophas/
+
+# Alterar o arquivo do Kernel
+
+	tail -n 18000 vmlinuz-4-9-0.amd64 > tmp 
+
+# Renomeando o arquivo tmp para vmlinuz 
+
+	mv tmp vmlinuz-4-9-0.amd64
+
+# Reiniciando a máquina 
+
+	reboot
+
+
+# A máquina quando voltar irá dar erro, pois não achará a imagem do kernel completa, ou seja corrompida. 
+
+--L Desligue a maquina para dar um boot com o live cd, neste cenário utilizamos o Ubuntu Mate 18.04
+
+# Após inicializar com live cd, opte pela opção experimentar Ubuntu Mate
+
+# Ao acessar o sistema abra um terminal para logar como root utilizando o seguinte comando 
+
+	sudo su
+
+Obs. Não será solicitado senha 
+
+
+# O comando df -h trará apenas as partições do live cd
+
+# Os discos da máquina poderão ser vistos com o comando 
+
+	fdisk -l 
+
+# Próximo passo é identificar as partições e montar no /mnt 
+
+# Cria os diretórios home_tmp boot_tmp raiz_tmp 
+
+# Monta os diretórios 
+
+# Copia o backup que foi feito dentro ~biophas/vmlinuz-4-9-0.amd64 para o /mnt/boot_tmp para restaurar a imagem 
+
+# Depois disso é reiniciar o computador que dará boot pela imagem correta e completa do kernel 
+
+
+------------------------------------------------------------------
+
+Danificando recuperando o sys editando o fstab 
+
+
+
+# Editar o arquivo /etc/fstab e colocar um x no final do /home e / 
+
+# Reiniciar a máquina 
+
+# Listar as partições que forma montadas 
+
+	mount 
+
+# Alterar a partição / de ro para rw para que possa ser editado o arquivo fstab
+
+# Reinicia a máquina 
+
+# Quando for feito o boot o sys retorna no /bin/bash, onde é digitado a senha de root para acessar o terminal 
+
+# Para lista as partições utilize o comando abaixo: 
+
+	mount | grep sda 
+	/dev/sda2 on / type ext4 (ro,relatime,data=ordered)
+	/dev/sda1 on /boot type ext4 (rw,relatime,data=ordere)
+
+Obs. O / só foi montado porque é passado no arquvo grub.cfg onde deve ser montado 
+
+# Para editar o /etc/fstab é necessário remotar a partição / como rw
+
+	mount -o remount,rw /dev/sda2 
+
+# Corrigir o arquivo /etc/fstab 
+
+
+ 
+------------------------------------------------------------------
+
+Apagando a mbr 
+
+# Realizando backup 
+
+dd if=/dev/sda of=/home/biophas/bkp_mbr bs=512 count=1 
+
+# Apagando a MBR apagando o bootloader  
+
+dd if=/dev/zero of=/dev/sda bs=512 count=1 
+
+# Utilizar o live cd para dar boot na máquina 
+
+# Instalar o programa testdisk 
+
+	apt-get install testdisk 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
