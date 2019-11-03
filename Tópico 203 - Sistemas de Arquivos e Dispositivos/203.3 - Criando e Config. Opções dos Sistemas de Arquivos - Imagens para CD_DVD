@@ -7,7 +7,7 @@ mkisofs > genisoimage: Create ISO9660/Joliet/HFS filesystem with optional Rock R
 udftools >: 
 
 
-# Criando uma imagem do drive de cd/dvd físico 
+# Criando uma imagem extraindo do drive cd/dvd físico 
 
 dd if=/dev/sr0 of=image.iso 
 
@@ -26,7 +26,6 @@ genisoimage -o imagem2.iso /home/biophas /etc/apt/
 # Criando imagem de dois dirtórios separados 
 
 genisoimage -o imagem3.iso -grafit-points dir1=/home/biophas/ dir2=/etc/apt
-
 
 # Criando um diretório corrigindo os nomes dos arquivos 
 
