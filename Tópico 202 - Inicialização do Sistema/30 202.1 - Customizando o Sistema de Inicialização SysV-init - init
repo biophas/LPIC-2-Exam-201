@@ -96,6 +96,14 @@ Obs. Eles executam os scripts que pertecem aquele nível escolhido.
 
 runlevel 
 
+# INIT 
+
+É pai de todos os processos 
+
+# Comando para saber qual é o init do seu Linux se é systemd ou SysV  
+
+grep Name /proc/1/status 
+
 
 
 
