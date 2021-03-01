@@ -4,12 +4,12 @@ Exam Objectives Version: 4.5 (Exam code 201-450).
 
 LPIC-2 (201-450) 
 
---> Topic 200: Capacity Planning 
+--> 200: Capacity Planning 
 
       --> 200.1 Measure and Troubleshoot Resource Usage (Weight: 6)
       --> 200.2 Predict Future Resource Needs (Weight: 2)
       
---> Topic 201: Linux Kernel 
+--> 201: Linux Kernel 
 
       --> 201.1 Kernel Components (Weight: 2) 
       --> 201.2 Compiling a kernel (Weight: 3) 
