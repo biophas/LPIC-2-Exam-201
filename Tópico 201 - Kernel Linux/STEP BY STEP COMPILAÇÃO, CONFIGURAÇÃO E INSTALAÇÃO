@@ -2,99 +2,57 @@ STEP BY STEP COMPILAÇÃO, CONFIGURAÇÃO E INSTALAÇÃO DO KERNEL
 
 Configurando o kernel  
 
-1. Baixar o código fonte em kernel.org 
-2. Enivar arquivo fontes para o servidor no diretório /usr/src
-3. Descompactar o arquivo utilizando o tar
-4. Criar link simbólico entre o diretório linux-5.0.10 e link chamado linux
-5. Instalar dependências 
-
-build-essential, bison, flex, libncurses-dev, 
-
-Compilando opções que serão inseridas ou retiradas do kernel 
-
-make menuconfig 
-
-Obs. É possível aproveitar o arquivo .config já que fica no /boot/config-v-r-s
-
-Ao terminar é necessário salvar o arquivo na opção save, o mesmo será salvo em /usr/src 
-
-6. Editar o arquivo Makefile e a linha EXTRAVERSION e colocar a versão desejada do kernel 
-7. Editar o arquivo .config na linha e colocar complemento do jeito que achar melhor ex. -amd64, -x86, generic ou -BPHS CONFIG_LOCALVERSION="-BPHS"
+# tar -Jxvf kernel.a-b-c 
+# ln -s kernel.a-b-c 
+# apt install build-essential bison flex libncurses-dev  
+# cp /boot/config.a-b.c .config 
+# make menuconfig 
+--> Ao terminar é necessário salvar o arquivo na opção save, o mesmo será salvo em /usr/src 
+# vim MakeFile
+--> Editar o arquivo Makefile e a linha EXTRAVERSION e colocar a versão desejada do kernel 
+--> Editar o arquivo .config na linha e colocar complemento do jeito que achar melhor ex. -amd64, -x86, generic ou -BPHS CONFIG_LOCALVERSION="-BPHS", essa opção
+também pode ser configurada no comando make menuconfig
 
 --> Compilando o kernel
 
 # Instalar as dependências: libelf-dev, bc, *elfutils-libelf-dev, *libesl-dev, libssl-dev
 
-Debian: libssl1.0-dev, libelf-dev, bc, elfutils, libesl-dev, libssl-dev
-CentOS: openssl-devel, bc, libelf-devel, elfutils-libelf-devel
-
-# Executar o comando make:
-
-	make -j2 bzImage 
-
-#Verificar a geração da imagem bzImage no diretório arch/x86/boot/bzImage 
-
+# apt-install libssl1.0-dev libelf-dev bc elfutils libesl-dev libssl-dev -y
+# yum install openssl-devel, bc, libelf-devel, elfutils-libelf-devel -y 
+--> Quando a máquina possue mais de um processador/core é possível executar mais de um processo com o -j, com isso demora menos tempo. 
+# make -j2 bzImage
+--> Dentro do diretório /usr/src/linux 
+# ls -l arch/x86/boot/bzImage 
 --> Compilar os módulos 
-
-Executar o comando: 
-	
-	make -j2 modules 
-
-OBS.. Caso aconteça algum erro na hora da compilação, é recomendado a utilização do comando make clean e mrpropper. 
-
-make clean: Limpa toda a compilação como o arquivo bzImage e os módulos compilados 
-make mrproper: Faz tudo que o make clean faz, porém ele apaga também o arquivo .config 
-
-
-
+# make -j2 modules 
+--> OBS.. Caso aconteça algum erro na hora da compilação, é recomendado a utilização do comando make clean para limpeza dos arquivos já compilados, sendo 
+mantido o arquivo .conf e no caso mrpropper a limpeza também é feita no arquivo de configuração, além dos arquivos compilados. 
+# make clean ou make mrproper 
 
 --> Maneira 1: Instalando o Kernel 
 
-	make install 
+# make install 
 
-# Tips 
-
-- Copia o bzImage em arch/x86/boot/ para o /boot
-- Instala o System.map (Utilizado para fazer debug do kernel quando acontece algum problema)
-- Com o comando update-initramfs ele gera o arquivo /boot/initrd.img-5.0.0.0000
-- initrd.img.5.0.0.0(Debian) é o arquivo configurado no grub e que é utilizado no processo de boot do sistema 
-- Dentro do initramfs existe um diretório raiz inicial, para que seja feito o boot da imagem do kernel 
-- Faz um update-grub atualizando o arquivo grub.cfg que fica no diretório /boot/grub2/grub.cfg 
-- Cria os arquivos vmlinuz- e initrd (Debian)
-
-
+# cp /usr/src/linux/arch/x86/boot/bzImage para o /boot/vmlinuz-a-b-c 
+# update-initramfs ele gera o arquivo /boot/initrd.img-5.0.0.0000
+--> Atualizando /boot/grub2/grub.cfg 
+# update-grub 
 --> Instalando os modulos 
-
-	make modules_install 
-
-
-Reiniciar o PC para dar boot pelo o novo kernel. 
-
+# make modules_install 
+# shutdown -r now 
 
 --> Maneira 2: Instalando o Kernel 
 	
-	Move o arquivo bzImage para o /boot renomeando para vmlinuz-versão. 
-	Debian: mkinitramfs -o /boot/initrd.img-versão	versão 
-	CentOS: mkinitrd -k 5.0.0.0 -o /boot/initrd etc 
-
-# Para atualizar o arquivo grub.cfg 
-
-	update-grub
-
+# mkinitramfs -o /boot/initrd.img-versão a-b-c 
+# mkinitrd -k versão-a-b-c -o /boot/initrd etc 
+# update-grub
+# shutdown -r now 
 --> Maneira 3: Instalando o Kernel 
 
 # Gerando o arquivo initrd.img.5.0.0.0.0
-
-	update-initramfs -c -k 5.0.0.0.0  
-
-Obs. update-initramfs pode ser usado para atualizar o arquivo initrd após a inserção de um novo módulo. 
-
-
+# update-initramfs -c -k 5.0.0.0.0  
+# shutdown -r now 
 	
-777
-
-RWX
-421
 
 	
 
