@@ -2,10 +2,12 @@ STEP BY STEP COMPILAÇÃO, CONFIGURAÇÃO E INSTALAÇÃO DO KERNEL
 
 Configurando o kernel  
 
-# tar -Jxvf kernel.a-b-c 
-# ln -s kernel.a-b-c 
+# tar -Jxvf linux-5.11.11.tar.xz
+
+# ln -s linux-5.11.11 linux 
+
 # apt install build-essential bison flex libncurses-dev  
-# cp /boot/config.a-b.c .config 
+# cp /boot/config-4.9.0-15-amd64 .config 
 # make menuconfig 
 --> Ao terminar é necessário salvar o arquivo na opção save, o mesmo será salvo em /usr/src 
 # vim MakeFile
@@ -13,12 +15,18 @@ Configurando o kernel
 --> Editar o arquivo .config na linha e colocar complemento do jeito que achar melhor ex. -amd64, -x86, generic ou -BPHS CONFIG_LOCALVERSION="-BPHS", essa opção
 também pode ser configurada no comando make menuconfig
 
+
 --> Compilando o kernel
 
 # Instalar as dependências: libelf-dev, bc, *elfutils-libelf-dev, *libesl-dev, libssl-dev
 
-# apt-install libssl1.0-dev libelf-dev bc elfutils libesl-dev libssl-dev -y
+# apt-install libelf-dev libssl1.0-dev bc elfutils libssl-dev
+  *libesl-dev  
+
+
 # yum install openssl-devel, bc, libelf-devel, elfutils-libelf-devel -y 
+
+
 --> Quando a máquina possue mais de um processador/core é possível executar mais de um processo com o -j, com isso demora menos tempo. 
 # make -j2 bzImage
 --> Dentro do diretório /usr/src/linux 
