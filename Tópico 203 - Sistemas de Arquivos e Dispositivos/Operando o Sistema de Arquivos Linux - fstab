@@ -1,0 +1,14 @@
+
+--> Opções do comando mount 
+
+
+defaults
+  Use the default options: 
+  
+  rw - Read Writer
+  suid - Allow set-user-ID ou set-group-ID bits to take effect 
+  dev - 
+  exec - Allow x
+  auto - Can be mounted with the -a option
+  nouser - Forbid an ordinary user to mount the filesystem 
+  async - All I/O to the filesystem should be done asynchronously 
