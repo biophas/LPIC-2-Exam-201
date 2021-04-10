@@ -1,12 +1,10 @@
 # 204.1 - Configurando RAID - O que é RAID e Principais Tipos
 
-# RAID 
-
-Redundant Array of Inexpressives Drives (ou Independent Disks)
+# RAID - Redundant Array of Inexpressives Drives (ou Independent Disks)
 
 Método para agrupar vários dispositvos em uma única unidade lógica 
 
-Pode ser feito via hardware ou via software 
+Pode ser feito via HARDWARE ou via SOFTWARE 
 
 RAID levels 
 
@@ -18,20 +16,44 @@ RAID 4
 RAID 5
 RAID 6 
 
-RAID Híbridos 
 
-RAID 01 
-RAID 10
-RAID 50 
-RAID 100
-JBOD (RAID N + N)
+RAID 0 [Stripping] - No mínimo 2 discos ou mais, combinados sendo utilizado como dispositivo único. 
+Não tem redundância, ao perder um bloco, tudo será perdido. 
 
+Ex. 
 
-RAID 0 (Stripping) Não tem redundância 
+Disk1 5GB 
+Disk2 5GB
+Disk3 5GB
+Total Bloco = 15G (No redundancy)  
 
 RAID 1 (Mirroring) espelha os discos 
 
-RAID 5 funciona a partir de 3 discos 
+Mirroring 
+
+Disk1 [Mirror] Disk1 
+
+Para o RAID1, tudo que é gravado no disco 1, também é gravado no disco 2, desta forma se o disco 2 falhar, os dados não serão perdidos, pois os mesmos dados 
+estarão gravados no disco 1. 
+
+
+RAID 5 funciona a partir de 3 discos, e possuí a função de paridade entre os blocos 
+
+Disk1 Disk2 Disk3 
+Bl1    Bl2   Paridade
+Bl3   Paridade BL4 
+Paridade Bl5   Bl6
+
+O que é a paridade? Um combinação de bits, entre o Bloco 1 e Bloco 2, é gerado uma terceira combinação de bits entre os blocos
+
+Exempo: 4 Disk de 10G, teremos um total de 30G, pois 10G será destinado a paridade 
+
+Ao perder um Disk/Bloco, é possível recuperar as informações com combinação de um disco com a partidade 
+
+
+Bloco 3 Paridde Bloco 4 (Failed)
+
+A combinação do Disk3 e a paridade é possível recuperar o Disk/Bloco4 
 
 
 
