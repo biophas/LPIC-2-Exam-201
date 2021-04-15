@@ -1,0 +1,127 @@
+200.1 - Medir e Resolver problemas de uso de recursos - iostat, vmstat e mpstat
+
+iostat - Reports Central Processing Unit (CPU), statistics and I/O statistcs for devices and partitions
+vmstat - Reports virtual memory statistics 
+mpstat - Reports processors statistics 
+
+---------------------------------------------------------------------------------------------------------------------
+
+IOSTAT - Reports CPU, disl I/O, and NFS statistics 
+
+
+Linux 3.16.0-4-amd64 (BPHS-PC)  27-11-2018      _x86_64_        (2 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0,00    0,00    0,11    0,02    0,00   99,87
+
+Device:            tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+sda               0,08         1,37         0,27     115668      22517
+
+
+Campos
+avg-cpu: Carga média de processamento
+
+%user: 
+User level applications (Nível de aplicações utilizadas pelo usuário)
+
+%nice: 
+Nice priority. (Processos definidos com a prioridade nice)
+
+%system: 
+System level (Gerencialmente de recursos utilizados pelo kernel).
+
+%iowait: 
+CPUs idle (Quanto tempo a cpu ficou esperando algum procedimento read e write I/O em disco)
+
+%idle (O tempo que as cpu´s ficaram em estado idle) 
+
+%steal: Idle CPUs virtual request Machine Virtual (É o tempo que cpu virtual ficou aguardando um retorno da cpu real) 
+
+DEVICE (sda, sdb) 
+
+tps - Transfers per second
+
+KB_read/s - Block read per second 
+
+KB_wrtn/s - Block written per second 
+
+KB_read - Total read per second 
+
+KB_wrtn - Total written per second 
+
+---------------------------------------------------------------------------------------------------------------------
+iostat -m (Display statitistics in megabytes per second)
+iostat -c (Display Statistics CPUs)
+iostat -d (Display Statistics Device) 
+iostat -p (Display Statistics for block devices and all their partitions)
+iostat -p /dev/sda1 (Display Statistics block partitions sda1)
+iostat -V (Print version number)
+iostat -N (Display the registered device mapper names, LVM Statistics  
+iostat -x (Display extended statistics) 
+iostat -c 2 (Atuliza as informações a cada 2s)
+iostat -d 2 5 (Atuliza as informações a cada 2s por cinco vezes)
+
+-------------------------------------------------------------------------------
+
+VMSTAT - Report Virtual memory statistics 
+
+r: The number of runnable processes (running or waiting for run time)
+b: The number of processes in uninterruptable sleep (Dorment)
+
+swapd: Used virtual memory 
+free: Free virtual memory
+buff: Memory used as buffers 
+cache: Memory used as cache
+
+si - swap in
+
+so - swap out 
+
+bi - block in
+
+bo - block out
+
+in - The number of interrupts per second, incluing the clock
+
+cs - The number of context switches per second (O número de opções de contexto por segundo)
+
+vmstat -d
+vmstat -p (Só retorna informações se for mencionado a partição, caso contrário retorna erro)
+
+
+-------------------------------------------------------------------------------
+
+MPSTAT (Estatísticas dos Multiprocessadores) 
+
+Report processors related statistics 
+
+-u - Report utilization CPU
+
+
+%irq
+
+%soft
+
+%steal
+
+%guest
+
+%gnice
+
+%idle
+
+-------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

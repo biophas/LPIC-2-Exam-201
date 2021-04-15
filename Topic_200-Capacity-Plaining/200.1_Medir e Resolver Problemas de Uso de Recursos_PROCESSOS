@@ -1,0 +1,54 @@
+# PS 
+
+--> VSZ - Virtual Memory Size  (Tamanho virtual do processo) 
+
+--> RSS - Resident Set Size (Total de memoria usadas pelo os processos e seus arquivos)
+
+RSS: 400K + 1000K + 100K = 1500K
+VSZ: 500K + 2500K + 200K = 3200K
+
+--> Mostra no formato em que possa identificar processos em estado b (The number of processes in uninterruptible sleep).
+
+	ps -ely
+
+# PSTREE 
+
+
+--> O comando pstree não vem instalado por padrão, para utilizá-lo é necessário instalar o pacote psmisc. 
+
+
+--> Lista a ávore de processos e seus respectivos PIDs. 
+
+	pstree -p 
+	
+	
+	
+# w 
+
+--> Show who is logged on and what they are doing 
+
+--> Desconectar um usuário 
+
+fuser -k /dev/pts/0 
+
+
+# LSOF 
+
+--> List open files 
+
+vi lpic2.txt 
+
+ps aux | grep vi | grep lpic2.txt 
+
+Pegar o número PID 
+
+lsof -p 1639 
+
+
+
+ 
+
+
+
+
+

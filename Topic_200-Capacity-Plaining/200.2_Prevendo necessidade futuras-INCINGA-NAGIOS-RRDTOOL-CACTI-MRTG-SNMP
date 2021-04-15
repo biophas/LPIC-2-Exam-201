@@ -1,0 +1,28 @@
+# Prevendo necessidade futuras 
+
+Collectd é daemon 
+
+/etc/collectd/collectd.conf
+
+
+
+ls -ltr /var/lib/collectd/rrd/
+
+São arquivos binários
+
+Para leitura das informações pode ser utilizado o rrdtool 
+
+rrdtool - Is the OpenSource standard, high performance data logging and graphing system for time
+series data, RRDtool can be easily integrated in shell scripts, perl, python, ruby.
+
+
+Cacti - É uma solução completa de representação gráfica em rede projetada para aproveitar o poder
+da funcionalidade de armazenamento de dados e gráficos do RRDTool. 
+
+MRTG - Tem o foco o monitoramento do tráfego de rede 
+
+Nagios - Ferramenta de monitoração 
+
+Inciga - Ferramenta de monitoração 
+
+

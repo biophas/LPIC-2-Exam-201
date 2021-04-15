@@ -1,0 +1,36 @@
+200.1 
+
+
+# NETSTAT - Show connections networks, route table, statistics inteface, mask connections 
+
+netstat -i
+netstat -s 
+netstat -a 
+
+Obs: The command netstat search informations file directory /proc, informations of kernel.
+
+# SS (Substituto do netstat) anotter utility to investigate sockets 
+
+ss -s 
+ss -l 
+ss -t 
+ss -u 
+
+ss -tn 
+ss -un
+
+Obs: The command ss search informations direct on memory of kernel 
+
+
+# IPTRAF 
+
+--> Monitora todo o tráfego das interfaces e portas, protocolos icmp, ssh etc... 
+
+
+
+
+
+
+
+
+
