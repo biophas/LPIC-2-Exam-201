@@ -7,7 +7,7 @@ pvcreate /dev/sdc2 && pvs && vgextend group1 /dev/sdc2 && vgs (Informa a quantid
 
 # Aumentando um logical volume 
 
-lvextebd -L 15G /dev/grupo1/lv-teste1 && lvs && resize2fs /dev/mapper/grupo1-lvgteste1 
+lvextend -L 15G /dev/grupo1/lv-teste1 && lvs && resize2fs /dev/mapper/grupo1-lvgteste1 
 
 # Diminuindo o tamanho de um filesystems
 
