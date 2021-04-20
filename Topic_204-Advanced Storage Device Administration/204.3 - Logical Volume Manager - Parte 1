@@ -2,24 +2,13 @@
 
 # Instalação pacote lvm2 
 
-apt-get install lvm2 
+apt-get install lvm2 && cat /etc/lvm/lvm.conf 
 
-# Arquivo lvm 
-
-cat /etc/lvm/lvm.conf 
-
-# Alterando o tipo de disco para lvm
-
-alterar para o tipo 8e lvm 
+# Alterar o tipo de disco para lvm com fdisk -l 
 
 # Criando o phisical volume 
 
-pvcreate /dev/sdc1
-pvcreate /dev/sdc2 
-
-# listando os pvs 
-
-pvs ou pvdisplay 
+pvcreate /dev/sdc1 && pvs 
 
 # Criando o volume grup 
 
