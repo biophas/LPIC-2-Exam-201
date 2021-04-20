@@ -1,56 +1,55 @@
 # 204.3 - Logical Volume Manager - Parte 2
 
 
-Passo 1: Aumentando o tamanho de volume lógico
+# Aumentando volume group 
 
-lvextend -L 15G /dev/grupo1/lvgroup
+pvcreate /dev/sdc2 && pvs && vgextend group1 /dev/sdc2 && vgs (Informa a quantidade de pvs)
 
-Passo 2: Aumentando o tamanho de um filesystems 
+# Aumentando um logical volume 
 
-resize2fs /dev/mapper/grupo1-lvgroup
+lvextebd -L 15G /dev/grupo1/lv-teste1 && lvs && resize2fs /dev/mapper/grupo1-lvgteste1 
 
-Diminuindo o tamanho de um filesystems 
+# Diminuindo o tamanho de um filesystems
 
-e2fsck -f /dev/mapper/grupo1-lvgroup
-resize2fs /dev/mapper/grupo1-lvgroup 10G
-
-Dimunuindo o tamanho de volume lógico 
-lvreduce -L 13G /dev/grupo1/lvgroup
+Obs. Antes de diminuir deve ser redimensionado o filesystem, a mexer no tamanho do volume sem redimensionar o file system, irá destruir as informações do disco. 
 
 
+e2fsck -f /dev/mapper/grupo1-lvg-teste1 && resize2fs /dev/mapper/grupo1-lvgroup 10G && lvreduce -L 13G /dev/grupo1/lvgroup && lvs 
 
 # Removendo volume lógico 
 
+O comando pvs é necessário para verificar quais discos estão sendo utilizados, ao digitar vgreduce será mostrado a mensagem se o disco pôde ser removido ou se ele está em uso. 
 
 vgreduce grupo1 /dev/sdc2
 
-root@debian:~# pvs
   PV         VG     Fmt  Attr PSize  PFree 
   /dev/sdc1  grupo1 lvm2 a--  10,00g     0 
   /dev/sdc2  grupo1 lvm2 a--  10,00g  4,99g
   /dev/sdd1         lvm2 ---  10,00g 10,00g
 
+
 Obs. Só consigo remover disco de volume group caso ele não esteja sendo uutilizado 
 
 # Renomenado um vg ou um lv 
-vgrename grupo1 grupo2
 
-# Renomeando um lv 
-
-lvrename /dev/grupo2/lvgroup /dev/grupo2/lvgroup2
+vgrename grupo1 grupo2 || lvrename /dev/grupo2/lvgroup /dev/grupo2/lvgroup2
 
 # Criando snapshot 
 
+umount /mnt/teste1 && lvcreate -L1G -s -n teste-snapshot /dev/foton1/teste10 
 
-lvcreate -L1G -s -n teste-snapshot /dev/mapper/grupo2-lvgroup2
+-L1G - Não precisa ser do tamanho dos dados existentes no diretório que será tirado a foto
 
-Obs. O tamanho do snapshot pode ser de 10 a 20% do total dos arquivos 
+-n - name String
+-s - snapshot 
 
-Salvo em: 
+teste-snapshot - Nome do snapshot a ser criado 
 
-/dev/mapper/grupo2-teste--snapshot
-  
-Montando: 
+/dev/foton1/teste10 - Diretório a ser tirado o snapshot 
+
+Obs. O tamanho do snapshot pode ser de 10 a 20% do total dos arquivos, ao digitar um lvdisplay temos a informação que o determinado lvs é origem de um snapshot realizado com o nome xyz, também possível identificar o snapshot com o comando lvdisplay. 
+
+
 
 mount /dev/mapper/grupo2-teste--snapshot /mnt/lvm2 
 
@@ -66,46 +65,19 @@ lvremove /dev/grupo2/teste-snapshot
 cp -prf /etc/* .
 
 
-lvcreate -L1G -s -n teste-snapshot /dev/mapper/grupo1-lv_exerc2
+lvcreate -L1G -s -n teste-snapshot /dev/foton1/teste10 && 
+
+
+mount /dev/foton1/teste10 /mnt/teste1 
+mount /dev/foton1/teste-snap /mnt/teste2 
+
+ls -l /dev/foton1/teste10 /mnt/teste1 | wc -l 
+ls -l /dev/foton1/teste-snap /mnt/teste2 | wc -l 
+
+umount /dev/foton1/teste-snap /mnt/teste2 && lvremove /dev/foton1/teste-snap /mnt/teste2
 
 Obs. O tamanho do snapshot pode ser de 15% a 20% do tamanho real do diretório lvm 
 
-# Aumentando o tamanho do volume group 
-
-vgextend grupo1 /dev/sdb3
-
-# Listando snapshot criado 
-
-ls -ltr /dev/mapper/grupo1-teste--snapshot
-lrwxrwxrwx 1 root root 7 jan 18 23:14 /dev/mapper/grupo1-teste--snapshot -> ../dm-4
-
-# Aumentando o tamanho de logical volume 
-
---> É necessário rodar um e2fsck primeiro 
-
-lvextend -L 40G /dev/grupo2/lv_exerc3
-
-e2fsck -f /dev/mapper/grupo2-lv_exerc3
-
-resize2fs /dev/mapper/grupo2-lv_exerc3 
-
-+4G Adiciona 4 gigas 
-4G informa o tamanho do LV 
-
-
-
-
-
-  516  whatis resize2fs 
-  517  resize2fs /dev/mapper/grupo1-lv--bphs 
-  520  resize2fs /dev/mapper/grupo1-lv--bphs 
-  593   
-  598  resize2fs /dev/mapper/grupo1-lvgroup 12G
-  600  resize2fs /dev/mapper/grupo1-lvgroup 12G
-  606  resize2fs -L 15G /dev/mapper/grupo1-lvgroup 
-  607  resize2fs -L15G /dev/mapper/grupo1-lvgroup 
-  608  history resize2fs
-  609  history | grep resize2fs
 
 
 
